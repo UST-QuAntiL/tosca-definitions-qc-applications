@@ -1,0 +1,11 @@
+{
+    "https://ust-quantil.github.io/servicetemplates" : {
+    "namespace" : "https://ust-quantil.github.io/servicetemplates",
+    "prefix" : "serviceTemplatesQuantil",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
+  }
+}
