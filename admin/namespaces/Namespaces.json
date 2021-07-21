@@ -1,0 +1,20 @@
+{
+    "https://ust-quantil.github.io/quantum/applications/servicetemplates" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/servicetemplates",
+    "prefix" : "quantumApplicationsServiceTemplates",
+    "readableName" : "",
+    "upstreamRepository" : "",
+    "secureCollection" : false,
+    "generatedNamespace" : false,
+    "patternCollection" : false
+  },
+    "https://ust-quantil.github.io/quantum/applications/artifacttemplates" : {
+        "namespace" : "https://ust-quantil.github.io/quantum/applications/artifacttemplates",
+        "prefix" : "quantumApplicationsArtifactTemplates",
+        "readableName" : "",
+        "upstreamRepository" : "",
+        "secureCollection" : false,
+        "generatedNamespace" : false,
+        "patternCollection" : false
+    }
+}
