@@ -12,7 +12,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Gunicorn" minInstances="1" maxInstances="1" type="otntyIgeneral:Gunicorn_20.1.0-w1-wip1" id="Gunicorn_20.1.0-w1-wip1_0" winery:x="765" winery:y="366">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Gunicorn" minInstances="1" maxInstances="1" type="otntyIgeneral:Gunicorn_20.1.0-w1" id="Gunicorn_20.1.0-w1_0" winery:x="765" winery:y="366">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>get_input: Port</Port>
@@ -20,7 +20,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-PluginRunner_latest-w1-wip1" id="QHAna-PluginRunner_latest-w1-wip1_0" winery:x="765" winery:y="185">
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-PluginRunner_latest-w1" id="QHAna-PluginRunner_latest-w1_0" winery:x="765" winery:y="185">
                 <Properties>
                     <properties xmlns="https://ust-quantil.github.io/nodetypes/propertiesdefinition/winery">
                         <MaxWorkers>4</MaxWorkers>
@@ -48,20 +48,20 @@
                 <TargetElement ref="Ubuntu-VM_20.04-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1">
-                <SourceElement ref="Gunicorn_20.1.0-w1-wip1_0"/>
+                <SourceElement ref="Gunicorn_20.1.0-w1_0"/>
                 <TargetElement ref="Ubuntu-VM_20.04-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_0">
-                <SourceElement ref="Gunicorn_20.1.0-w1-wip1_0"/>
+                <SourceElement ref="Gunicorn_20.1.0-w1_0"/>
                 <TargetElement ref="Python_3-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_1">
-                <SourceElement ref="QHAna-PluginRunner_latest-w1-wip1_0"/>
+                <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
                 <TargetElement ref="Python_3-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_2">
-                <SourceElement ref="QHAna-PluginRunner_latest-w1-wip1_0"/>
-                <TargetElement ref="Gunicorn_20.1.0-w1-wip1_0"/>
+                <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
+                <TargetElement ref="Gunicorn_20.1.0-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_3">
                 <SourceElement ref="Ubuntu-VM_20.04-w1_0"/>
