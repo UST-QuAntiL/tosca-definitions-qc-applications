@@ -10,6 +10,7 @@
 - `OpenStackProjectId`: The project ID within OpenStack to use to create the VMs
 - `VMKeyPairName`: The name of the key pair defined in OpenStack to initialize the VMs.
 - `VMPrivateKey`: The corresponding private key to access the VMs.
+- `Port`: The port on which the Plugin Runner should be listening to requests
 
 ## Haftungsausschluss
 
