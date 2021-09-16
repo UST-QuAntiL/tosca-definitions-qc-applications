@@ -6,7 +6,7 @@
 {
   "name" : "Common Types",
   "url" : "https://github.com/OpenTOSCA/tosca-definitions-common",
-  "branch" : "main"
+  "branch" : "qhana"
 },
 {
   "name" : "QuAntiL Types",
