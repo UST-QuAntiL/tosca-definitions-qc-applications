@@ -3,7 +3,7 @@
 echo "Starting QHana-Backend"
 
 cd qhana_backend
-java qhana_backend.jar
+java -jar qhana_backend.jar
 
 echo "Done"
 
