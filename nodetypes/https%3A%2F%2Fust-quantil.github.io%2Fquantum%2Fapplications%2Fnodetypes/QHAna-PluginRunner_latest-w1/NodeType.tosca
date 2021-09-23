@@ -29,6 +29,25 @@
                 <Operation name="stop"/>
                 <Operation name="uninstall"/>
             </Interface>
+            <Interface name="http://opentosca.org/interfaces/connections/db">
+                <Operation name="connectTo">
+                    <InputParameters>
+                        <InputParameter name="DBName" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBUser" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBPassword" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBMSPort" type="xsd:string" required="yes"/>
+                        <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="yes"/>
+                    </InputParameters>
+                </Operation>
+            </Interface>
+            <Interface name="http://opentosca.org/interfaces/connections/redis">
+                <Operation name="connectTo">
+                    <InputParameters>
+                        <InputParameter name="RedisPort" type="xsd:string" required="yes"/>
+                        <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="yes"/>
+                    </InputParameters>
+                </Operation>
+            </Interface>
         </Interfaces>
     </NodeType>
 </Definitions>

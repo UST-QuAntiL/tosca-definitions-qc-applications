@@ -9,26 +9,6 @@ port = $Port
 # the domains allowed cors requests
 corsDomains = ["http://localhost:4200", "*"]
 
-
-[qhana.qhana_backend.database]
-
-
-# Either "sqlite" or "mariadb"
-dbType = "mariadb"
-
-
-# File Path to the sqlite db
-dbPath = "qhana-backend.db"
-
-
-# Hostname + port for mariadb db
-dbHost = "$DBHost"
-# DB name for mariadb db
-dbName = "$DBName"
-# DB user for mariadb db
-dbUser = "$DBUser"
-# DB password for mariadb db
-dbPassword = "$DBPassword"
 EOF
 
 echo "$(<Config.toml)"

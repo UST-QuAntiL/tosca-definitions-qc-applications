@@ -6,23 +6,6 @@
                 <winery:key>Port</winery:key>
                 <winery:type>xsd:string</winery:type>
             </winery:properties>
-            <winery:properties>
-                <winery:key>DBHost</winery:key>
-                <winery:type>xsd:string</winery:type>
-            </winery:properties>
-            <winery:properties>
-                <winery:defaultValue>QHAnaExperiments</winery:defaultValue>
-                <winery:key>DBName</winery:key>
-                <winery:type>xsd:string</winery:type>
-            </winery:properties>
-            <winery:properties>
-                <winery:key>DBUser</winery:key>
-                <winery:type>xsd:string</winery:type>
-            </winery:properties>
-            <winery:properties>
-                <winery:key>DBPassword</winery:key>
-                <winery:type>xsd:string</winery:type>
-            </winery:properties>
         </winery:PropertiesDefinition>
         <DerivedFrom xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" typeRef="otntyIgeneral1:BallerinaApp_slbeta2-w1-wip1"/>
         <Interfaces>
@@ -31,13 +14,23 @@
                 <Operation name="configure">
                     <InputParameters>
                         <InputParameter name="Port" type="xsd:string" required="yes"/>
-                        <InputParameter name="DBHost" type="xsd:string" required="yes"/>
-                        <InputParameter name="DBName" type="xsd:string" required="yes"/>
-                        <InputParameter name="DBUser" type="xsd:string" required="yes"/>
-                        <InputParameter name="DBPassword" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
                 <Operation name="start"/>
+            </Interface>
+            <Interface name="http://www.opentosca.org/interfaces/connections/db">
+                <Operation name="connectTo">
+                    <InputParameters>
+                        <InputParameter name="DBUser" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBName" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBPassword" type="xsd:string" required="yes"/>
+                        <InputParameter name="DBMSPort" type="xsd:string" required="yes"/>
+                        <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="yes"/>
+                    </InputParameters>
+                </Operation>
+            </Interface>
+            <Interface name="http://opentosca.org/interfaces/connections/pluginrunner">
+                <Operation name="connectTo"/>
             </Interface>
         </Interfaces>
     </NodeType>
