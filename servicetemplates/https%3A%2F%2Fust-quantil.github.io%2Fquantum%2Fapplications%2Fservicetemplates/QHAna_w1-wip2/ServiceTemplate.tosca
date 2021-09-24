@@ -5,7 +5,7 @@
             <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-PluginRunner_latest-w1" id="QHAna-PluginRunner_latest-w1_0" winery:x="1379" winery:y="249">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
-                        <Port>8080</Port>
+                        <Port>9997</Port>
                         <AppModule>qhana_plugin_runner:create_app()</AppModule>
                         <MaxWorkers>4</MaxWorkers>
                         <MinWorkers>1</MinWorkers>
@@ -38,7 +38,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral1:MariaDBMS_10-w1-wip1" id="MariaDBMS_10-w1-wip1_0" winery:x="851" winery:y="686">
+            <NodeTemplate xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral1:MariaDBMS_10-w1-wip1" id="MariaDBMS_10-w1-wip1_0" winery:x="855" winery:y="645">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBMSUser>admin</DBMSUser>
@@ -71,7 +71,7 @@
             <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1-wip1" minInstances="1" maxInstances="1" type="ntyIgeneral:QHana-Backend_w1-wip1" id="QHana-Backend_w1-wip1_0" winery:x="440" winery:y="250">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
-                        <Port>9090</Port>
+                        <Port>9098</Port>
                     </Properties>
                 </Properties>
                 <DeploymentArtifacts>
@@ -102,7 +102,7 @@
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9998</Port>
-                        <ContainerPort>9090</ContainerPort>
+                        <ContainerPort>9098</ContainerPort>
                         <ContainerID/>
                         <ContainerIP/>
                         <ImageID>ubuntu:20.04</ImageID>
@@ -128,7 +128,7 @@
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9997</Port>
-                        <ContainerPort>8080</ContainerPort>
+                        <ContainerPort>9997</ContainerPort>
                         <ContainerID/>
                         <ContainerIP/>
                         <ImageID>ubuntu:20.04</ImageID>
