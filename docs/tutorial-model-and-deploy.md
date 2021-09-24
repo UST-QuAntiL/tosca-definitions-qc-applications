@@ -1,12 +1,15 @@
 # Tutorial: Model and Deploy an Application with OpenTOSCA
 
-Terms in *cursive* can be found in the [glossary](tosca-glossary.md).
+This tutorial takes you through the steps to model and deploy a simple application using OpenTOSCA in the development docker-compose setup.
+The application modeled in this tutorial is a simple Angular app hosted on NGINX running inside a docker container.
 
-**Requierments:**
+:information_source: Terms in *italics* can be found in the [glossary](tosca-glossary.md).
+
+**Requirements:**
 
  *  GIT (optionally GIT-LFS)
  *  Docker & Docker Compose
- *  ca. 6GB RAM
+ *  At least 6GB RAM free for the OpenTOSCA docker-compose
 
 Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the README once.
 
