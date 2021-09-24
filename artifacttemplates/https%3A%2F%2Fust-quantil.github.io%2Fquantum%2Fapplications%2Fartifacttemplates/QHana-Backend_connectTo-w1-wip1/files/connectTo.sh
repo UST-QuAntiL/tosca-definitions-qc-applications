@@ -15,13 +15,13 @@ dbPath = "qhana-backend.db"
 
 
 # Hostname + port for mariadb db
-dbHost = "${TARGET_ContainerIP}:${DMBSPort}"
+dbHost = "${TARGET_ContainerIP}:${TARGET_DMBSPort}"
 # DB name for mariadb db
-dbName = "$DBName"
+dbName = "$TARGET_DBName"
 # DB user for mariadb db
-dbUser = "$DBUser"
+dbUser = "$TARGET_DBUser"
 # DB password for mariadb db
-dbPassword = "$DBPassword"
+dbPassword = "$TARGET_DBPassword"
 EOF
 
 java -jar qhana_backend.jar

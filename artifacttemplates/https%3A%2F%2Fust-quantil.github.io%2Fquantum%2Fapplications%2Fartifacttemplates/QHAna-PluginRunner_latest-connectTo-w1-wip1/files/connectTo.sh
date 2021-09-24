@@ -2,7 +2,7 @@
 
 cat << EOF > connect_db.sh
 #!/bin/bash
-export SQLALCHEMY_DATABASE_URI = mariadb+pymysql://${DBUser}:${DBPassword}@${TARGET_ContainerIP}:${DBMSPort}/${DBName}?charset=utf8mb4
+export SQLALCHEMY_DATABASE_URI="mariadb+pymysql://${TARGET_DBUser}:${TARGET_DBPassword}@${TARGET_ContainerIP}:${TARGET_DBMSPort}/${TARGET_DBName}?charset=utf8mb4"
 EOF
 
 if [ -f connect_redis.sh ]; then
