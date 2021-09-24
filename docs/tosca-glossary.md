@@ -44,6 +44,7 @@ A selection of terms used in the TOSCA standard with an informal explanation of 
     The Node Template is defined by a **Node Type** and can have **Deployment Artifacts** containing application code that should be deployed.
  *  **Relationship Type**\
     Defines the semantics of **Relationship Templates** by specifying **Properties** and **Management Interfaces**.
+    See also [Relationship Type Semantics](#relationship-type-semantics)
  *  **Relationship Type Implementation**\
     Represents a concrete implementation of the **Relationship Type** semantics.
     The Implementation is provided using **Implementation Artifacts**.
@@ -80,3 +81,14 @@ A more complete overview over the OpenTOSCA ecosystem can be found here: <https:
     Topology modelling tool and CSAR repository.
  *  **VinoThek** / [**OpenTOSCA UI**](https://github.com/OpenTOSCA/ui)\
     User Interface for the OpenTOSCA runtime and self-service portal for deploying applications/services available as CSARs in the configured CSAR repository.
+
+
+## Relationship Type Semantics
+
+| Relationship Type | Explanation | Use-Case |
+|:------------------|:------------|:---------|
+| **ConnectsTo**    | A relationship describing a connection between two node templates (often on different hosts, e.g. different containers or VMs). Requires source **and** target to be deployed. | Connecting an application with its database. |
+| **DependsOn**     | A relationship describing a dependency between nodes on the same host (container or VM). Requires the target node to be deployed first. | A python application depends on a python runtime.
+| **HostedOn**      | A similar relationship to DependsOn, but describing a stronge hosted on dependency where the target hosts the source. Requires the target node to be deployed first. | A website hosted on an http server or an application hosted on a virtual machine operating system. |
+| **AttachesTo**    | A relationship from the TOSCA standard. Not used in OpenTOSCA | – |
+| **RoutesTo**      | A relationship from the TOSCA standard. Not used in OpenTOSCA | – |
