@@ -50,6 +50,8 @@ Make sure to save your changes.
 
 ![qhana service template with the self-service portal tab open](./images/self-service-tab.png)
 
+:bangbang: Make sure to save the self-service portal information or your changes will be lost.
+
 
 ### 3. Define the Topology
 
@@ -113,6 +115,7 @@ Open the "Deployment Artifats" of the QHAnaUI_w1-wip1 node template and click on
 |:------|:------|
 | Name  | QHAna-UI_DA |
 | Create Artifact Template | :radio_button: |
+| Namespace | `https://ust-quantil.github.io/quantum/applications/artifacttemplates` |
 | Artifact Template Name | QHAna-UI_DA_template |
 | Artifact Type | ArchiveArtifact |
 
