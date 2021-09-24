@@ -18,7 +18,7 @@
                 </Operation>
                 <Operation name="start"/>
             </Interface>
-            <Interface name="http://www.opentosca.org/interfaces/connections/db">
+            <Interface name="http://opentosca.org/interfaces/connections/db">
                 <Operation name="connectTo">
                     <InputParameters>
                         <InputParameter name="TARGET_DBUser" type="xsd:string" required="yes"/>
