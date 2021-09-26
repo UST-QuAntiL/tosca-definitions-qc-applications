@@ -94,7 +94,7 @@ Now fill in the other properties:
 | DockerContainer_w1 | ImageID | `ubuntu:20.04` | The base image to use. |
 | DockerContainer_w1 | ContainerPort | `80` | NGINX runs on port 80 so that port must be mapped outside. |
 | DockerContainer_w1 | Port | `get_input: Port` | The user input Port. Provided at deployment time by the end user. |
-| QHAnaUI_w1-wip1 | AppName | `qhana` | The app name is used as path to differentiate multiple NGINX apps hosted on the same NGINX server. |
+| QHAnaUI_w1-wip1 | AppName | `qhana` | The app name is used as a folder name where the DA contants are extracted to. The app will be treated as the http root of NGINX. |
 
 :information_source: The value `get_input: Port` is a special value that is replaced by a user input before deploying the service template.
 The name of the user input comes after the colon `get_input: <custom name here>`.
@@ -131,7 +131,7 @@ The created artifact template can be found under the "Other Elements" tab at the
 
 Click on the "Artifact Templates" button and search for the created artifact template name.
 Open the files tab and upload the provided artifact template. <!-- TODO provide an artifact template (download link?) -->
-(Alternatively build the artifact template from source by zipping the build output of a production build of the [QHAna-UI](https://github.com/UST-QuAntiL/qhana-ui#build).)
+(Alternatively build the artifact template from source by zipping the build output [only the loose files and not a folder in a zip!] of a production build of the [QHAna-UI](https://github.com/UST-QuAntiL/qhana-ui#build).)
 
 ![qhana frontend deployment artifact file upload](./images/da-template-files-tab.png)
 
@@ -191,4 +191,4 @@ The instance details page allows viewing the logs and outputs of running and com
 To watch the deployment in the console see the [Useful Commands](https://github.com/OpenTOSCA/opentosca-docker#useful-commands) section of the OpenTOSCA docker-compose repository.
 Attach to the logs of `container`, `engine-ia` and `engine-plan` in two seperate terminals with the provided commands for the best overview.
 
-To verify that your deployment was actually successful open <http://localhost:9990/qhana> (change the port if you chose another port before) in your browser.
+To verify that your deployment was actually successful open <http://localhost:9990/> (change the port if you chose another port before) in your browser.
