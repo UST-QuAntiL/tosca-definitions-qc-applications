@@ -7,8 +7,8 @@ The application modeled in this tutorial is a simple Angular app hosted on NGINX
 
 **Requirements:**
 
- *  GIT (optionally GIT-LFS)
- *  Docker & Docker Compose
+ *  [GIT](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (optionally GIT-LFS)
+ *  [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/)
  *  At least 6GB RAM free for the OpenTOSCA docker-compose
 
 Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the README once.
