@@ -13,7 +13,7 @@
                 <winery:type>xsd:integer</winery:type>
             </winery:properties>
         </winery:PropertiesDefinition>
-        <DerivedFrom xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" typeRef="otntyIgeneral1:GunicornApp_w1"/>
+        <DerivedFrom xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" typeRef="ntyIgeneral:QHAna-PluginRunner_latest-w1"/>
         <Interfaces>
             <Interface name="http://opentosca.org/interfaces/lifecycle">
                 <Operation name="install"/>
