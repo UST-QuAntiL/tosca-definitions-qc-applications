@@ -19,7 +19,14 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" name="Ballerina" minInstances="1" maxInstances="1" type="otntyIgeneral1:Ballerina_slbeta2-w1-wip1" id="Ballerina_slbeta2-w1-wip1_0" winery:x="438" winery:y="328"/>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Java" minInstances="1" maxInstances="1" type="otntyIgeneral:Java_11-w1" id="Java_11-w1_0" winery:x="417" winery:y="461">
+                <Properties>
+                    <Properties xmlns="http://www.example.org">
+                        <component_version/>
+                        <admin_credential/>
+                    </Properties>
+                </Properties>
+            </NodeTemplate>
             <NodeTemplate xmlns:otntyIgeneral1="http://opentosca.org/nodetypes" name="NGINX" minInstances="1" maxInstances="1" type="otntyIgeneral1:NGINX_latest-w1" id="NGINX_latest-w1_0" winery:x="158" winery:y="316">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
@@ -140,7 +147,7 @@
                     <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="SQL-QHana-Backend-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:SQL-QHana-Backend-DA_w1-wip1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAnaUI_w1-wip1" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAnaUI_w1-wip1" id="QHAnaUI_w1-wip1_0" winery:x="158" winery:y="190">
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-UI_w1-wip1" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-UI_w1-wip1" id="QHAna-UI_w1-wip1_0" winery:x="158" winery:y="190">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <AppName/>
@@ -161,12 +168,12 @@
                 <TargetElement ref="UbuntuContainer_20.04-w1-wip1_2"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_4">
-                <SourceElement ref="Ballerina_slbeta2-w1-wip1_0"/>
+                <SourceElement ref="Java_11-w1_0"/>
                 <TargetElement ref="UbuntuContainer_20.04-w1-wip1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_0">
                 <SourceElement ref="QHana-Backend_w1-wip1_0"/>
-                <TargetElement ref="Ballerina_slbeta2-w1-wip1_0"/>
+                <TargetElement ref="Java_11-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_5">
                 <SourceElement ref="QHana-Backend_w1-wip1_0"/>
@@ -253,7 +260,7 @@
                 <TargetElement ref="MariaDB_10-w1-wip1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_2">
-                <SourceElement ref="QHAnaUI_w1-wip1_0"/>
+                <SourceElement ref="QHAna-UI_w1-wip1_0"/>
                 <TargetElement ref="NGINX_latest-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_0">
@@ -262,7 +269,7 @@
                         <ChannelType/>
                     </properties>
                 </Properties>
-                <SourceElement ref="QHAnaUI_w1-wip1_0"/>
+                <SourceElement ref="QHAna-UI_w1-wip1_0"/>
                 <TargetElement ref="QHana-Backend_w1-wip1_0"/>
             </RelationshipTemplate>
         </TopologyTemplate>
