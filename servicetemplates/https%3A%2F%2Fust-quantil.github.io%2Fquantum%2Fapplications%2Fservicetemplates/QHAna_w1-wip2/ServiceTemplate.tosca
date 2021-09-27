@@ -68,12 +68,15 @@
                     <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="SQL-QHana-Backend-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:SQL-QHana-Backend-DA_w1-wip1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1-wip1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w1-wip1" id="QHana-Backend_w1-wip1_0" winery:x="440" winery:y="250">
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1-wip1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w1-wip1" id="QHana-Backend_w1-wip1_0" winery:x="448" winery:y="172">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9098</Port>
                     </Properties>
                 </Properties>
+                <DeploymentArtifacts>
+                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-Backend-DA" artifactType="otatyIgeneral:JAR" artifactRef="quantumApplicationsArtifactTemplates:QHana-Backend-DA_w1-wip1"/>
+                </DeploymentArtifacts>
             </NodeTemplate>
             <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Redis" minInstances="1" maxInstances="1" type="otntyIgeneral:Redis_6-w1-wip1" id="Redis_6-w1-wip1_1" winery:x="1767" winery:y="389">
                 <Properties>
