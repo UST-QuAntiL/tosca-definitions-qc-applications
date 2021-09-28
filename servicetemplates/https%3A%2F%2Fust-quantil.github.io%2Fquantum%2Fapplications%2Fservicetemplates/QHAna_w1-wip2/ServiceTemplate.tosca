@@ -41,7 +41,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w1-wip1" id="MariaDBMS_10-w1-wip1_0" winery:x="855" winery:y="645">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w1" id="MariaDBMS_10-w1_0" winery:x="855" winery:y="645">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBMSUser>admin</DBMSUser>
@@ -50,7 +50,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1-wip1" id="MariaDB_10-w1-wip1_0" winery:x="1012" winery:y="352">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_0" winery:x="1012" winery:y="352">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>plugin_runner_db</DBName>
@@ -59,7 +59,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1-wip1" id="MariaDB_10-w1-wip1_1" winery:x="738" winery:y="367">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_1" winery:x="738" winery:y="367">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>QHAnaExperiments</DBName>
@@ -68,20 +68,20 @@
                     </Properties>
                 </Properties>
                 <DeploymentArtifacts>
-                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="SQL-QHana-Backend-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:SQL-QHana-Backend-DA_w1-wip1"/>
+                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="SQL-QHana-Backend-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:SQL-QHana-Backend-DA_w1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1-wip1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w1-wip1" id="QHana-Backend_w1-wip1_0" winery:x="448" winery:y="172">
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w1" id="QHana-Backend_w1_0" winery:x="448" winery:y="172">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9098</Port>
                     </Properties>
                 </Properties>
                 <DeploymentArtifacts>
-                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-Backend-DA" artifactType="otatyIgeneral:JAR" artifactRef="quantumApplicationsArtifactTemplates:QHana-Backend-DA_w1-wip1"/>
+                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-Backend-DA" artifactType="otatyIgeneral:JAR" artifactRef="quantumApplicationsArtifactTemplates:QHana-Backend-DA_w1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Redis" minInstances="1" maxInstances="1" type="otntyIgeneral:Redis_6-w1-wip1" id="Redis_6-w1-wip1_1" winery:x="1767" winery:y="389">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Redis" minInstances="1" maxInstances="1" type="otntyIgeneral:Redis_6-w1" id="Redis_6-w1_1" winery:x="1767" winery:y="389">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <RedisPort>9995</RedisPort>
@@ -161,7 +161,7 @@
                     </Properties>
                 </Properties>
                 <DeploymentArtifacts>
-                    <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-UI-DA" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="quantumApplicationsArtifactTemplates:QHana-UI-DA_w1-wip1"/>
+                    <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-UI-DA" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="quantumApplicationsArtifactTemplates:QHana-UI-DA_w1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
             <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="IBMQ_w1" minInstances="1" maxInstances="1" type="ntyIgeneral:IBMQ_w1" id="IBMQ_w1_0" winery:x="2012" winery:y="236">
@@ -185,12 +185,12 @@
                 <TargetElement ref="Python_3-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_8">
-                <SourceElement ref="MariaDB_10-w1-wip1_1"/>
-                <TargetElement ref="MariaDBMS_10-w1-wip1_0"/>
+                <SourceElement ref="MariaDB_10-w1_1"/>
+                <TargetElement ref="MariaDBMS_10-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_14">
-                <SourceElement ref="MariaDB_10-w1-wip1_0"/>
-                <TargetElement ref="MariaDBMS_10-w1-wip1_0"/>
+                <SourceElement ref="MariaDB_10-w1_0"/>
+                <TargetElement ref="MariaDBMS_10-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_1">
                 <Properties>
@@ -199,10 +199,10 @@
                     </properties>
                 </Properties>
                 <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
-                <TargetElement ref="MariaDB_10-w1-wip1_0"/>
+                <TargetElement ref="MariaDB_10-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_4">
-                <SourceElement ref="QHana-Backend_w1-wip1_0"/>
+                <SourceElement ref="QHana-Backend_w1_0"/>
                 <TargetElement ref="Java_11-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_2">
@@ -211,8 +211,8 @@
                         <ChannelType/>
                     </properties>
                 </Properties>
-                <SourceElement ref="QHana-Backend_w1-wip1_0"/>
-                <TargetElement ref="MariaDB_10-w1-wip1_1"/>
+                <SourceElement ref="QHana-Backend_w1_0"/>
+                <TargetElement ref="MariaDB_10-w1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_4">
                 <Properties>
@@ -220,7 +220,7 @@
                         <ChannelType/>
                     </properties>
                 </Properties>
-                <SourceElement ref="QHana-Backend_w1-wip1_0"/>
+                <SourceElement ref="QHana-Backend_w1_0"/>
                 <TargetElement ref="QHAna-PluginRunner_latest-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_3">
@@ -230,7 +230,7 @@
                     </properties>
                 </Properties>
                 <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
-                <TargetElement ref="Redis_6-w1-wip1_1"/>
+                <TargetElement ref="Redis_6-w1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0">
                 <SourceElement ref="NGINX_latest-w1_0"/>
@@ -241,7 +241,7 @@
                 <TargetElement ref="DockerContainer_w1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_3">
-                <SourceElement ref="MariaDBMS_10-w1-wip1_0"/>
+                <SourceElement ref="MariaDBMS_10-w1_0"/>
                 <TargetElement ref="DockerContainer_w1_2"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_5">
@@ -253,7 +253,7 @@
                 <TargetElement ref="DockerContainer_w1_3"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_7">
-                <SourceElement ref="Redis_6-w1-wip1_1"/>
+                <SourceElement ref="Redis_6-w1_1"/>
                 <TargetElement ref="DockerContainer_w1_4"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_9">
@@ -287,7 +287,7 @@
                     </properties>
                 </Properties>
                 <SourceElement ref="NGINX-Application_w1_0"/>
-                <TargetElement ref="QHana-Backend_w1-wip1_0"/>
+                <TargetElement ref="QHana-Backend_w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_5">
                 <Properties>
