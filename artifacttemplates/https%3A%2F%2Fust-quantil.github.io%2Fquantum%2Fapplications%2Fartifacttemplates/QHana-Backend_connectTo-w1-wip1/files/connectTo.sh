@@ -24,6 +24,6 @@ dbUser = "$TARGET_DBUser"
 dbPassword = "$TARGET_DBPassword"
 EOF
 
-java -jar qhana_backend.jar
+java -jar qhana_backend.jar > start.log
 
 sleep 5

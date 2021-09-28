@@ -14,7 +14,7 @@ for i in "${NAMES[@]}"; do
   if [[ "${entry[1]}" == *.jar ]];
   then
     # copy the executable to /qhana_backend
-    mkdir /qhana_backend
+    mkdir qhana_backend
     cp $CSAR${entry[1]} /qhana_backend/qhana_backend.jar
   fi
 done

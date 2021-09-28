@@ -12,4 +12,5 @@ if [ -f connect_redis.sh ]; then
         source connect_db.sh
         source connect_ibmq.sh
         source start_script.sh
+    fi
 fi
