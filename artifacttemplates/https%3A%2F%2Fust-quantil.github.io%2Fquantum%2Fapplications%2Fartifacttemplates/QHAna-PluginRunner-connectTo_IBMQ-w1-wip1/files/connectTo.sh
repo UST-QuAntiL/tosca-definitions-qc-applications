@@ -2,7 +2,7 @@
 
 cat << EOF > connect_ibmq.sh
 #!/bin/bash
-export IBMQ_BACKEND_NAME="${TARGET_IBMQ_BACKEND_NAME}"
+export IBMQ_BACKEND="${TARGET_IBMQ_BACKEND_NAME}"
 export IBMQ_TOKEN="${TARGET_IBMQ_TOKEN}"
 EOF
 
