@@ -74,7 +74,7 @@
             <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w1" id="QHana-Backend_w1_0" winery:x="448" winery:y="172">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
-                        <Port>9098</Port>
+                        <Port>9998</Port>
                     </Properties>
                 </Properties>
                 <DeploymentArtifacts>
@@ -105,7 +105,7 @@
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9998</Port>
-                        <ContainerPort>9098</ContainerPort>
+                        <ContainerPort>9998</ContainerPort>
                         <ContainerID/>
                         <ContainerIP/>
                         <ImageID>ubuntu:20.04</ImageID>
