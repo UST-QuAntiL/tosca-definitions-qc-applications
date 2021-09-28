@@ -176,7 +176,7 @@ Provide values for the properties defined with `get_input: …` (see [4. Set the
 
 | Property | Value | Explanation |
 |:---------|:------|:------------|
-| DockerEngineURL | `tcp://dind:2222` | The address of the dind container. |
+| DockerEngineURL | `tcp://dind:2375` or `tcp://${PUBLIC_HOSTNAME}:2222` | The address of the dind container. |
 | Port     | `9990` | A port between `9990` and `9999` as only these ports are exposed by default in the dind container. (May be changed in the docker-compose file.) |
 
 ![image dialog filled out](./images/tosca-ui-new-instance-dialog-properties.png)
