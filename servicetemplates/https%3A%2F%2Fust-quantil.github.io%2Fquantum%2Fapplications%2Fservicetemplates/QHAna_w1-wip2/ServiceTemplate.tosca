@@ -11,6 +11,9 @@
                         <MinWorkers>1</MinWorkers>
                     </Properties>
                 </Properties>
+                <DeploymentArtifacts>
+                    <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="Plugins-DA" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="quantumApplicationsArtifactTemplates:QHana-PluginRunner-Plugins-DA"/>
+                </DeploymentArtifacts>
             </NodeTemplate>
             <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="NGINX" minInstances="1" maxInstances="1" type="otntyIgeneral:NGINX_latest-w1" id="NGINX_latest-w1_0" winery:x="74" winery:y="474">
                 <Properties>
@@ -30,7 +33,7 @@
             </NodeTemplate>
             <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Gunicorn" minInstances="1" maxInstances="1" type="otntyIgeneral:Gunicorn_20.1.0-w1" id="Gunicorn_20.1.0-w1_0" winery:x="1244" winery:y="568"/>
             <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Python" minInstances="1" maxInstances="1" type="otntyIgeneral:Python_3-w1" id="Python_3-w1_0" winery:x="1539" winery:y="673"/>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Java" minInstances="1" maxInstances="1" type="otntyIgeneral:Java_11-w1" id="Java_11-w1_0" winery:x="417" winery:y="461">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Java" minInstances="1" maxInstances="1" type="otntyIgeneral:Java_11-w1" id="Java_11-w1_0" winery:x="418" winery:y="461">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <component_version/>
@@ -161,6 +164,18 @@
                     <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHana-UI-DA" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="quantumApplicationsArtifactTemplates:QHana-UI-DA_w1-wip1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="IBMQ_w1" minInstances="1" maxInstances="1" type="ntyIgeneral:IBMQ_w1" id="IBMQ_w1_0" winery:x="2012" winery:y="236">
+                <Properties>
+                    <Properties xmlns="http://www.example.org">
+                        <PROVIDER/>
+                        <IBMQ_HUB/>
+                        <IBMQ_BACKEND_NAME>get_input: IBMQ_BACKEND_NAME</IBMQ_BACKEND_NAME>
+                        <IBMQ_TOKEN>get_input: IBMQ_TOKEN</IBMQ_TOKEN>
+                        <IBMQ_PROJECT/>
+                        <IBMQ_GROUP/>
+                    </Properties>
+                </Properties>
+            </NodeTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_11">
                 <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
                 <TargetElement ref="Gunicorn_20.1.0-w1_0"/>
@@ -273,6 +288,15 @@
                 </Properties>
                 <SourceElement ref="NGINX-Application_w1_0"/>
                 <TargetElement ref="QHana-Backend_w1-wip1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_5">
+                <Properties>
+                    <properties xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery">
+                        <ChannelType/>
+                    </properties>
+                </Properties>
+                <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
+                <TargetElement ref="IBMQ_w1_0"/>
             </RelationshipTemplate>
         </TopologyTemplate>
     </ServiceTemplate>

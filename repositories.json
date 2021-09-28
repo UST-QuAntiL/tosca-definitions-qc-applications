@@ -6,10 +6,10 @@
 {
   "name" : "Common Types",
   "url" : "https://github.com/OpenTOSCA/tosca-definitions-common",
-  "branch" : "qhana"
+  "branch" : "main"
 },
 {
   "name" : "QuAntiL Types",
   "url" : "https://github.com/UST-QuAntiL/tosca-definitions-quantil",
-  "branch" : "qhana"
+  "branch" : "main"
 } ]
