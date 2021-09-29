@@ -68,7 +68,7 @@ Drag the following nodes from the pallete on the left into the canvas:
 | DockerEngine_w1 | `http://opentosca.org/nodetypes` | The docker engine responsible for building and running the container.|
 | DockerContainer_w1 | `http://opentosca.org/nodetypes` | The docker container hosting the QHAna frontend code. |
 | NGINX_latest-w1 | `http://opentosca.org/nodetypes` | The webserver delivering the QHAna frontend code. |
-| QHAnaUI_w1-wip1 | `https://ust-quantil.github.io/quantum/applications/nodetypes` | The QHAna frontend code. The node type is derived from `{http://opentosca.org/nodetypes}NGINX-Application_w1` |
+| QHAnaUI_w1 | `https://ust-quantil.github.io/quantum/applications/nodetypes` | The QHAna frontend code. The node type is derived from `{http://opentosca.org/nodetypes}NGINX-Application_w1` |
 
 ![topology with node templates and an open node template palette on the left](./images/topology-nodes-only-with-open-palette.png)
 
@@ -79,7 +79,7 @@ Click on a *Node Template* to edit its *Properties* and to create new *Relations
 Next we will connect the nodes with *Relationship Templates* to define the dependencies and deployment order of the nodes.
 
 Connect all node templates in the topology with "HostedOn" relationship templates.
-Start with the QHAnaUI_w1-wip1 node template that is "HostedOn" the NGINX_latest-w1 node template that is "HostedOn" the DockerContainer_w1 node template that is "HostedOn" the DockerEngine_w1 node template.
+Start with the QHAnaUI_w1 node template that is "HostedOn" the NGINX_latest-w1 node template that is "HostedOn" the DockerContainer_w1 node template that is "HostedOn" the DockerEngine_w1 node template.
 The different *relationship types* are explained in the glossary.
 
 ![topology with connected node templates](./images/topology-nodes-with-relationships.png)
@@ -98,7 +98,7 @@ Now fill in the other properties:
 | DockerContainer_w1 | ImageID | `ubuntu:20.04` | The base image to use. |
 | DockerContainer_w1 | ContainerPort | `80` | NGINX runs on port 80 so that port must be mapped outside. |
 | DockerContainer_w1 | Port | `get_input: Port` | The port exposed outside. Provided at deployment time by the end user (see explanation below). |
-| QHAnaUI_w1-wip1 | AppName | `qhana` | The app name is used as a folder name where the DA contants are extracted to. The app will be treated as the http root of NGINX. |
+| QHAnaUI_w1 | AppName | `qhana` | The app name is used as a folder name where the DA contants are extracted to. The app will be treated as the http root of NGINX. |
 
 :information_source: The value `get_input: Port` is a special value that is replaced by a user input before deploying the service template.
 The name of the user input comes after the colon `get_input: <custom name here>`.
@@ -112,7 +112,7 @@ All properties with the same user input name in the same service template will *
 *Deployment Artifacts* are used to provide the actual application code used by the node template.
 
 Next use the menu at the top to toggle the "DeploymentArtifacts" on (and hide the "Properties" again for better overview).
-Open the "Deployment Artifacts" of the QHAnaUI_w1-wip1 node template and click on "Add new Deployment Artifact".
+Open the "Deployment Artifacts" of the QHAnaUI_w1 node template and click on "Add new Deployment Artifact".
 
 ![node template with open deployment artifact section](./images/topology-add-deployment-artifact.png)
 
