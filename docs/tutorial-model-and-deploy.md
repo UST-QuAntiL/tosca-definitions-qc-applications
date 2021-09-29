@@ -11,7 +11,7 @@ The application modeled in this tutorial is a simple Angular app hosted on NGINX
  *  [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/)
  *  At least 6GB RAM free for the OpenTOSCA docker-compose
 
-Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the README once.
+Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the relevant sections of the README once (e.g. the first two sections, tips and tricks and troubleshooting).
 
 ## Model the Application
 
@@ -25,7 +25,7 @@ Remember the `PUBLIC_HOSTNAME` from this step!
 
 ### 2. Creating the Service Template
 
-Open the Winery in your browser (`http://${PUBLIC_HOSTNAME}:8080` [replace `${PUBLIC_HOSTNAME}`] or <http://localhost:8080>).
+Open the *Winery* in your browser (`http://${PUBLIC_HOSTNAME}:8080` [replace `${PUBLIC_HOSTNAME}`] or <http://localhost:8080>).
 
 Applications are modeled with *Service Templates*.
 Create a new Service Template using the "Add new" button on the right.
@@ -39,7 +39,7 @@ Fill in the following values:
 
 ![create new service template dialog filled out](./images/add-versioned-service-template-dialog.png)
 
-Now create a "README", "LICENCE" and "Documentatation" as needed.
+Now it is possible to create a "README", "LICENCE" and "Documentation" as needed.
 If you choose a predefined license make sure to fill in the correct copyright information.
 This step may be omitted when only following this tutorial for testing purposes.
 
@@ -60,6 +60,7 @@ The editor will open in a new tab.
 
 :warning: The editor does not auto-save. Make sure to **manually save** all changes **before leaving** the editor!
 
+The nodes on the left are grouped by the namespaces they are in.
 Drag the following nodes from the pallete on the left into the canvas:
 
 | Node | Namespace | Explanation |
@@ -75,8 +76,11 @@ Click on a *Node Template* to edit its *Properties* and to create new *Relations
 
 ![topology with a node template selected and open properties sidebar on the right](./images/topology-node-selected.png)
 
+Next we will connect the nodes with *Relationship Templates* to define the dependencies and deployment order of the nodes.
+
 Connect all node templates in the topology with "HostedOn" relationship templates.
 Start with the QHAnaUI_w1-wip1 node template that is "HostedOn" the NGINX_latest-w1 node template that is "HostedOn" the DockerContainer_w1 node template that is "HostedOn" the DockerEngine_w1 node template.
+The different *relationship types* are explained in the glossary.
 
 ![topology with connected node templates](./images/topology-nodes-with-relationships.png)
 
@@ -84,7 +88,7 @@ Start with the QHAnaUI_w1-wip1 node template that is "HostedOn" the NGINX_latest
 ### 4. Set the Node Template Properties
 
 Use the menu above to show the properties in the node templates (click on "Properties" next to "Types").
-Open the container properties and fill in "ubuntu:20.04" in the "ImageID" property.
+Open the properties of the DockerContainer_w1 node template and fill in "ubuntu:20.04" in the "ImageID" property.
 Alternatively click on the node and edit the property in the sidebar on the right.
 Now fill in the other properties:
 
@@ -93,7 +97,7 @@ Now fill in the other properties:
 | DockerEngine_w1 | DockerEngineURL | `get_input: DockerEngineURL` | The URL to the docker engine that is used to create the containers. This tutorial uses the Docker-in-Docker (dind) container that is part of the OpenTOSCA docker-compose file. |
 | DockerContainer_w1 | ImageID | `ubuntu:20.04` | The base image to use. |
 | DockerContainer_w1 | ContainerPort | `80` | NGINX runs on port 80 so that port must be mapped outside. |
-| DockerContainer_w1 | Port | `get_input: Port` | The user input Port. Provided at deployment time by the end user. |
+| DockerContainer_w1 | Port | `get_input: Port` | The port exposed outside. Provided at deployment time by the end user (see explanation below). |
 | QHAnaUI_w1-wip1 | AppName | `qhana` | The app name is used as a folder name where the DA contants are extracted to. The app will be treated as the http root of NGINX. |
 
 :information_source: The value `get_input: Port` is a special value that is replaced by a user input before deploying the service template.
@@ -105,8 +109,10 @@ All properties with the same user input name in the same service template will *
 
 ### 5. Add the Deployment Artifact
 
+*Deployment Artifacts* are used to provide the actual application code used by the node template.
+
 Next use the menu at the top to toggle the "DeploymentArtifacts" on (and hide the "Properties" again for better overview).
-Open the "Deployment Artifats" of the QHAnaUI_w1-wip1 node template and click on "Add new Deployment Artifact".
+Open the "Deployment Artifacts" of the QHAnaUI_w1-wip1 node template and click on "Add new Deployment Artifact".
 
 ![node template with open deployment artifact section](./images/topology-add-deployment-artifact.png)
 
@@ -124,6 +130,7 @@ Open the "Deployment Artifats" of the QHAnaUI_w1-wip1 node template and click on
 :bangbang: Save the topology now!
 
 To upload the actual *deployment artifact* go back to the Winery after **saving** the topology.
+Close the tab of the topology modeler to go back to the original winery tab.
 
 The created artifact template can be found under the "Other Elements" tab at the top.
 
@@ -131,6 +138,7 @@ The created artifact template can be found under the "Other Elements" tab at the
 
 Click on the "Artifact Templates" button and search for the created artifact template name.
 Open the files tab and upload the provided artifact template. <!-- TODO provide an artifact template (download link?) -->
+Use the "Dateien Auswählen" button on the left or the file drop area to upload the zip file.
 (Alternatively build the artifact template from source by zipping the build output [only the loose files and not a folder in a zip!] of a production build of the [QHAna-UI](https://github.com/UST-QuAntiL/qhana-ui#build).)
 
 ![qhana frontend deployment artifact file upload](./images/da-template-files-tab.png)
@@ -146,6 +154,7 @@ This part assumes that you have followed the first part from start to finish and
 ### 6. Load the CSAR from the Winery
 
 Open the OpenTOSCA UI in your browser (`http://${PUBLIC_HOSTNAME}:8088` [replace `${PUBLIC_HOSTNAME}`]).
+You can look it up again in the `.env` file you have created in the opentosca-docker repository.
 
 :warning: Do **not** use `localhost` to access the OpenTOSCA UI. The UI uses its URL to derive the URLs of the Winery and the Container. If you still experience problems with the following steps first read the [troubleshooting section](https://github.com/OpenTOSCA/opentosca-docker#troubleshooting) of the opentosca-docker repository.
 
