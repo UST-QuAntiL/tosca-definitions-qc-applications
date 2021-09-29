@@ -137,7 +137,7 @@ The created artifact template can be found under the "Other Elements" tab at the
 ![winery with other elements tab open](./images/other-elements-tab.png)
 
 Click on the "Artifact Templates" button and search for the created artifact template name.
-Open the files tab and upload the provided artifact template. <!-- TODO provide an artifact template (download link?) -->
+Open the files tab and upload the provided artifact template ([download link](https://github.com/UST-QuAntiL/tosca-definitions-qc-applications/raw/main/artifacttemplates/https%253A%252F%252Fust-quantil.github.io%252Fquantum%252Fapplications%252Fartifacttemplates/QHana-UI-DA_w1/files/qhana-ui.zip)).
 Use the "Dateien Auswählen" button on the left or the file drop area to upload the zip file.
 (Alternatively build the artifact template from source by zipping the build output [only the loose files and not a folder in a zip!] of a production build of the [QHAna-UI](https://github.com/UST-QuAntiL/qhana-ui#build).)
 
