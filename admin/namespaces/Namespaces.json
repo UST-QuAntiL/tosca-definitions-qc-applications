@@ -1,20 +1,42 @@
 {
-    "https://ust-quantil.github.io/quantum/applications/servicetemplates" : {
+  "https://ust-quantil.github.io/quantum/applications" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications",
+    "prefix" : "quantumApplications",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/applications/artifacttemplates" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/artifacttemplates",
+    "prefix" : "quantumApplicationsArtifactTemplates",
+    "readableName" : "Deployment Artifacts for QC Apps",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/applications/nodetypes" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypes",
+    "prefix" : "quantumApplicationNodeTypes",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations",
+    "prefix" : "quantumApplicationNodeTypeImplementations",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/applications/servicetemplates" : {
     "namespace" : "https://ust-quantil.github.io/quantum/applications/servicetemplates",
     "prefix" : "quantumApplicationsServiceTemplates",
-    "readableName" : "",
-    "upstreamRepository" : "",
-    "secureCollection" : false,
+    "readableName" : "Quantum Applications",
     "generatedNamespace" : false,
-    "patternCollection" : false
-  },
-    "https://ust-quantil.github.io/quantum/applications/artifacttemplates" : {
-        "namespace" : "https://ust-quantil.github.io/quantum/applications/artifacttemplates",
-        "prefix" : "quantumApplicationsArtifactTemplates",
-        "readableName" : "",
-        "upstreamRepository" : "",
-        "secureCollection" : false,
-        "generatedNamespace" : false,
-        "patternCollection" : false
-    }
+    "patternCollection" : false,
+    "secureCollection" : false
+  }
 }
