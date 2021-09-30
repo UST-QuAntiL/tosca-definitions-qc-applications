@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Definitions xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:selfservice="http://www.eclipse.org/winery/model/selfservice" xmlns:testwineryopentoscaorg="http://test.winery.opentosca.org" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="quantumApplicationsServiceTemplates-QHAna_w1">
-    <ServiceTemplate name="QHAna_w1" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="QHAna_w1">
+<Definitions xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:selfservice="http://www.eclipse.org/winery/model/selfservice" xmlns:testwineryopentoscaorg="http://test.winery.opentosca.org" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="quantumApplicationsServiceTemplates-QHAna_w2">
+    <ServiceTemplate name="QHAna_w2" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="QHAna_w2">
         <TopologyTemplate>
             <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHAna-PluginRunner_latest-w1" id="QHAna-PluginRunner_latest-w1_0" winery:x="1379" winery:y="249">
                 <Properties>
@@ -50,7 +50,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_0" winery:x="1012" winery:y="352">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_0" winery:x="1027" winery:y="312">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>plugin_runner_db</DBName>
@@ -59,7 +59,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_1" winery:x="738" winery:y="367">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_1" winery:x="727" winery:y="369">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>QHAnaExperiments</DBName>
@@ -175,6 +175,18 @@
                         <IBMQ_GROUP/>
                     </Properties>
                 </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_2" winery:x="1068" winery:y="440">
+                <Properties>
+                    <Properties xmlns="http://www.example.org">
+                        <DBName>muse_db</DBName>
+                        <DBUser>muse</DBUser>
+                        <DBPassword>muse_pw</DBPassword>
+                    </Properties>
+                </Properties>
+                <DeploymentArtifacts>
+                    <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="Muse-SQL-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:Mini-Muse-SQL-DA_w1"/>
+                </DeploymentArtifacts>
             </NodeTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_11">
                 <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
@@ -297,6 +309,19 @@
                 </Properties>
                 <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
                 <TargetElement ref="IBMQ_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_16">
+                <SourceElement ref="MariaDB_10-w1_2"/>
+                <TargetElement ref="MariaDBMS_10-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_6">
+                <Properties>
+                    <properties xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery">
+                        <ChannelType/>
+                    </properties>
+                </Properties>
+                <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
+                <TargetElement ref="MariaDB_10-w1_2"/>
             </RelationshipTemplate>
         </TopologyTemplate>
     </ServiceTemplate>
