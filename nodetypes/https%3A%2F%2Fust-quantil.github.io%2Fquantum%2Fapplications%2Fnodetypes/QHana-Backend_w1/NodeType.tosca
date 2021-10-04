@@ -3,7 +3,7 @@
     <NodeType name="QHana-Backend_w1" abstract="no" final="no" targetNamespace="https://ust-quantil.github.io/quantum/applications/nodetypes" winery:bordercolor="#000000">
         <winery:PropertiesDefinition elementname="properties" namespace="https://ust-quantil.github.io/quantum/applications/nodetypes/propertiesdefinition/winery">
             <winery:properties>
-                <winery:key>Port</winery:key>
+                <winery:key>BackendPort</winery:key>
                 <winery:type>xsd:string</winery:type>
             </winery:properties>
         </winery:PropertiesDefinition>
@@ -13,7 +13,7 @@
                 <Operation name="install"/>
                 <Operation name="configure">
                     <InputParameters>
-                        <InputParameter name="Port" type="xsd:string" required="yes"/>
+                        <InputParameter name="BackendPort" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
                 <Operation name="start"/>
