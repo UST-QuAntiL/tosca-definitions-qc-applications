@@ -4,7 +4,8 @@
 
 **NOTE**: Currently, there are CORS issues when starting the application.
 To avoid them, [start chrome without the web-security option](https://alfilatov.com/posts/run-chrome-without-cors/).
-Hereby it is important that all arguments are used. Otherwise it won't work!
+Hereby it is important that all arguments are used. 
+Otherwise, it won't work!
 
 ## Haftungsausschluss
 
