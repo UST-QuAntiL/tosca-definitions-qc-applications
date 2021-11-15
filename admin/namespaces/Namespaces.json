@@ -1,4 +1,12 @@
 {
+  "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations",
+    "prefix" : "quantumApplicationNodeTypeImplementations",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
   "https://ust-quantil.github.io/quantum/applications" : {
     "namespace" : "https://ust-quantil.github.io/quantum/applications",
     "prefix" : "quantumApplications",
@@ -18,14 +26,6 @@
   "https://ust-quantil.github.io/quantum/applications/nodetypes" : {
     "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypes",
     "prefix" : "quantumApplicationNodeTypes",
-    "readableName" : "",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
-    "secureCollection" : false
-  },
-  "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations" : {
-    "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypeimplementations",
-    "prefix" : "quantumApplicationNodeTypeImplementations",
     "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
