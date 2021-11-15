@@ -6,9 +6,9 @@
             <Interface name="http://opentosca.org/interfaces/connections">
                 <Operation name="connectTo">
                     <InputParameters>
-                        <InputParameter name="ContainerIP" type="string" required="no"/>
+                        <InputParameter name="VMIP" type="string" required="no"/>
                         <InputParameter name="Port" type="int" required="yes"/>
-                        <InputParameter name="AppName" type="string" required="yes"/>
+                        <InputParameter name="SOURCE_AppName" type="string" required="yes"/>
                     </InputParameters>
                 </Operation>
             </Interface>

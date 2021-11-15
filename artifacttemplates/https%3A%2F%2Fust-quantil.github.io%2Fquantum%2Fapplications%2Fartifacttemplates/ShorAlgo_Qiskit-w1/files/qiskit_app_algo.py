@@ -1,4 +1,4 @@
-from qiskit.aqua.algorithms import Shor
+from qiskit.algorithms import Shor
 
 
 ######### Function signature & filename must not be changed #########
@@ -6,10 +6,8 @@ def run_algo(quantum_instance, args):
 
     print('Number:', args["Number"])
 
-    algo = Shor(int(args["Number"]))
+    algo = Shor(quantum_instance)
     
-    result = algo.run(quantum_instance)
-	
-    return {'factors': result["factors"]}
+    result = algo.factor(int(args["Number"]))
 
-	
+    return {'factors': result.factors[0]}
