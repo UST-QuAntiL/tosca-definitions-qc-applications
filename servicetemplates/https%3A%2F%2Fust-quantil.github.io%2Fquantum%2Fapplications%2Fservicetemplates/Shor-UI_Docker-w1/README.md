@@ -1,6 +1,7 @@
-﻿# Abstract Qiskit Algorithm on IBMQ (+ Demo UI)
+﻿# Qiskit Shor Algorithm on IBMQ (+ Demo UI)
 
-> Deploys Python & Qiskit on a Ubuntu Docker Container and installs and runs Shor Qiskit algorithm on an IBMQ backend. A Demo UI is deployed as well.
+> Deploys Python & Qiskit on a Ubuntu Docker Container and installs and runs Shor Qiskit algorithm on an IBMQ backend.
+> A second Docker Container with a Demo UI is deployed as well.
 
 ## Properties
 
