@@ -4,8 +4,8 @@
 
 ## Properties
 
-- `MinWorkers. Minimum number of workers for the plugin runner
-- `MaxWorkers. Maximum number of workers for the plugin runner
+- `MinWorkers`: Minimum number of workers for the plugin runner
+- `MaxWorkers`: Maximum number of workers for the plugin runner
 
 ## Haftungsausschluss
 
