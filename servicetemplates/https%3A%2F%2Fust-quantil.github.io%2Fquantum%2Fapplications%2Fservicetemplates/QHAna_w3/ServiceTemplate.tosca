@@ -28,7 +28,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w1" id="MariaDBMS_10-w1_0" winery:x="1195" winery:y="631">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w2" id="MariaDBMS_10-w2_0" winery:x="1195" winery:y="631">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBMSUser>admin</DBMSUser>
@@ -37,7 +37,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_0" winery:x="1345" winery:y="250">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_0" winery:x="1345" winery:y="250">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>plugin_runner_db</DBName>
@@ -46,7 +46,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_1" winery:x="1089" winery:y="273">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_1" winery:x="1089" winery:y="273">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>QHAnaExperiments</DBName>
@@ -98,7 +98,7 @@
                         <ContainerPort>9996</ContainerPort>
                         <ContainerID/>
                         <ContainerIP/>
-                        <ImageID>ubuntu:20.04</ImageID>
+                        <ImageID>ubuntu:22.04</ImageID>
                         <ContainerMountPath/>
                         <HostMountFiles/>
                     </Properties>
@@ -153,7 +153,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w1" id="MariaDB_10-w1_2" winery:x="1533" winery:y="403">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_2" winery:x="1540" winery:y="389">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>muse_db</DBName>
@@ -191,12 +191,12 @@
                 <TargetElement ref="Python_3-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_8">
-                <SourceElement ref="MariaDB_10-w1_1"/>
-                <TargetElement ref="MariaDBMS_10-w1_0"/>
+                <SourceElement ref="MariaDB_10-w2_1"/>
+                <TargetElement ref="MariaDBMS_10-w2_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_14">
-                <SourceElement ref="MariaDB_10-w1_0"/>
-                <TargetElement ref="MariaDBMS_10-w1_0"/>
+                <SourceElement ref="MariaDB_10-w2_0"/>
+                <TargetElement ref="MariaDBMS_10-w2_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0">
                 <SourceElement ref="NGINX_latest-w1_0"/>
@@ -207,7 +207,7 @@
                 <TargetElement ref="DockerContainer_w1_1"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_3">
-                <SourceElement ref="MariaDBMS_10-w1_0"/>
+                <SourceElement ref="MariaDBMS_10-w2_0"/>
                 <TargetElement ref="DockerContainer_w1_2"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_5">
@@ -247,8 +247,8 @@
                 <TargetElement ref="NGINX_latest-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_16">
-                <SourceElement ref="MariaDB_10-w1_2"/>
-                <TargetElement ref="MariaDBMS_10-w1_0"/>
+                <SourceElement ref="MariaDB_10-w2_2"/>
+                <TargetElement ref="MariaDBMS_10-w2_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_7">
                 <Properties>
@@ -272,15 +272,6 @@
                 <SourceElement ref="QHAna-PluginRunner_latest-w2_0"/>
                 <TargetElement ref="Redis_6-w1_1"/>
             </RelationshipTemplate>
-            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_9">
-                <Properties>
-                    <properties xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery">
-                        <ChannelType/>
-                    </properties>
-                </Properties>
-                <SourceElement ref="QHAna-PluginRunner_latest-w2_0"/>
-                <TargetElement ref="MariaDB_10-w1_2"/>
-            </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_10">
                 <Properties>
                     <properties xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery">
@@ -288,7 +279,7 @@
                     </properties>
                 </Properties>
                 <SourceElement ref="QHAna-PluginRunner_latest-w2_0"/>
-                <TargetElement ref="MariaDB_10-w1_0"/>
+                <TargetElement ref="MariaDB_10-w2_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_1">
                 <Properties>
@@ -319,7 +310,11 @@
                     </properties>
                 </Properties>
                 <SourceElement ref="QHana-Backend_w2_0"/>
-                <TargetElement ref="MariaDB_10-w1_1"/>
+                <TargetElement ref="MariaDB_10-w2_1"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_0">
+                <SourceElement ref="QHAna-PluginRunner_latest-w2_0"/>
+                <TargetElement ref="MariaDB_10-w2_2"/>
             </RelationshipTemplate>
         </TopologyTemplate>
     </ServiceTemplate>
