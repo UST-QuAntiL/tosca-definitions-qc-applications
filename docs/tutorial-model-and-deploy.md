@@ -20,7 +20,8 @@ Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opent
 Before starting the OpenTOSCA docker compose file change the `WINERY_REPOSITORY_URL` to `https://github.com/UST-QuAntiL/tosca-definitions-qc-applications`.
 
 Then start OpenTOSCA according to the instructions in the <https://github.com/OpenTOSCA/opentosca-docker> repository.
-Remember the `PUBLIC_HOSTNAME` from this step!
+
+:bangbang: Remember the `PUBLIC_HOSTNAME` from this step! In most cases the public hostname will be the IP address of your computer, e.g., something like `111.112.113.114`.
 
 
 ### 2. Creating the Service Template
@@ -224,7 +225,7 @@ Provide values for the properties defined with `get_input: …` (see [4. Set the
 
 | Property | Value | Explanation |
 |:---------|:------|:------------|
-| DockerEngineURL | `tcp://${PUBLIC_HOSTNAME}:2222` | The address of the (host of the) dind container. |
+| DockerEngineURL | `tcp://${PUBLIC_HOSTNAME}:2222` | The address of the (host of the) dind container. [replace `${PUBLIC_HOSTNAME}`] |
 | FrontendPort    | `9992` | A port between `9990` and `9999` as only these ports are exposed by default in the dind container. (May be changed in the docker-compose file.) |
 | BackendPort     | `9991` | A port between `9990` and `9999`. |
 | IBMQ_BACKNED_NAME     | `ibmq_qasm_simulator` | The online state vector simulator for quantum circuits. |
@@ -242,4 +243,4 @@ The instance details page allows viewing the logs and outputs of running and com
 To watch the deployment in the console see the [Useful Commands](https://github.com/OpenTOSCA/opentosca-docker#useful-commands) section of the OpenTOSCA docker-compose repository.
 Attach to the logs of `container`, `engine-ia` and `engine-plan` in two seperate terminals with the provided commands for the best overview.
 
-To verify that your deployment was actually successful open <http://localhost:9992/> (change the port if you've chosen another port for the frontend before) in your browser.
+To verify that your deployment was actually successful open <http://localhost:9992/> (change the port if you have chosen another port for the frontend before) in your browser.
