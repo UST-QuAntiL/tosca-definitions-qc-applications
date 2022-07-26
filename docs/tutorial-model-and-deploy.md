@@ -1,7 +1,7 @@
 # Tutorial: Model and Deploy an Application with OpenTOSCA
 
 This tutorial takes you through the steps to model and deploy a simple application using OpenTOSCA in the development docker-compose setup.
-The application modeled in this tutorial is the shor example that can also be found in the PlanQK marketplace.
+The application modeled in this tutorial is the Shor example that can also be found in the [PlanQK](https://platform.planqk.de/#homepage) marketplace.
 
 :information_source: Terms in *italics* can be found in the [glossary](tosca-glossary.md).
 
@@ -21,7 +21,7 @@ Before starting the OpenTOSCA docker compose file change the `WINERY_REPOSITORY_
 
 Then start OpenTOSCA according to the instructions in the <https://github.com/OpenTOSCA/opentosca-docker> repository.
 
-:bangbang: Remember the `PUBLIC_HOSTNAME` from this step! In most cases the public hostname will be the IP address of your computer, e.g., something like `111.112.113.114`.
+:bangbang: Remember the `PUBLIC_HOSTNAME` from this step! In most cases, the public hostname will be the IP address of your computer, e.g., something like `111.112.113.114`.
 
 
 ### 2. Creating the Service Template
@@ -49,20 +49,20 @@ Set a name, a description and optionally an icon and preview image.
 The self-service portal information is used later in the OpenTOSCA UI.
 Make sure to save your changes.
 
-![shor service template with the self-service portal tab open](./images/self-service-tab.png)
+![Shor service template with the self-service portal tab open](./images/self-service-tab.png)
 
 :bangbang: Make sure to save the self-service portal information or your changes will be lost.
 
 
 ### 3. Define the Topology
 
-Open the "Topology Template" tab of the shor-example *Service Template* and open the topology editor by clicking the "Open Editor" button.
-The editor will open in a new tab.
+Open the "Topology Template" tab of the shor-example *Service Template* and open the topology modeler by clicking the "Open Editor" button.
+The modeler will open in a new tab.
 
-:warning: The editor does not auto-save. Make sure to **manually save** all changes **before leaving** the editor!
+:warning: The modeler does not auto-save. Make sure to **manually save** all changes **before leaving** the modeler!
 
 The nodes on the left are grouped by the namespaces they are in.
-Drag the following nodes from the pallete on the left into the canvas to model the shor UI:
+Drag the following nodes from the pallete on the left into the canvas to model the Shor UI:
 
 | Node | Namespace | Explanation |
 |:-----|:----------|:------------|
@@ -86,14 +86,14 @@ The different *relationship types* are explained in the glossary.
 ![topology with connected node templates](./images/topology-nodes-with-relationships.png)
 
 
-We also need to model the actual shor service.
+We also need to model the actual Shor service.
 For this we need the following additional nodes:
 
 | Node | Namespace | Explanation |
 |:-----|:----------|:------------|
 | DockerContainer_w1 | `http://opentosca.org/nodetypes` | The docker container hosting the Shor code. |
-| Python_3-w1 | `http://opentosca.org/nodetypes` | The python interpreter running the shor algorithm. |
-| Qiskit_latest-w1 | `https://ust-quantil.github.io/nodetypes` | The SDK required to run the shor algorithm. |
+| Python_3-w1 | `http://opentosca.org/nodetypes` | The python interpreter running the Shor algorithm. |
+| Qiskit_latest-w1 | `https://ust-quantil.github.io/nodetypes` | The SDK required to run the Shor algorithm. |
 | Qiskit-App_w1 | `https://ust-quantil.github.io/nodetypes` | The Shor algorithm. |
 | IBMQ_w1 | `https://ust-quantil.github.io/nodetypes` | The proxy node for the connection to the IBMQ cloud. |
 
@@ -108,11 +108,11 @@ Now connect all the nodes accordingly:
 | Qiskit_latest-w1 | DependsOn | Python_3-w1 | Qiskit must be installed after python |
 | Qiskit_latest-w1 | HostedOn | IBMQ_w1 | Quiskit circuits are executed on the IBMQ infrastructure. See also [TOSCA4QC: Two Modeling Styles for TOSCA to Automate the Deployment and Orchestration of Quantum Applications](https://doi.org/10.1109/EDOC49727.2020.00024) for more information. |
 | Qiskit-App_w1 | HostedOn | Qiskit_latest-w1 | Qiskit_latest-w1 already depends on python and IBMQ so there is no need for additional connections on this node. |
-| Shor-UI_w1 | ConnectsTo | Qiskit-App_w1 | Models the connection between the shor UI and the backend service. |
+| Shor-UI_w1 | ConnectsTo | Qiskit-App_w1 | Models the connection between the Shor UI and the backend service. |
 
 ![full topology with all node templates connected](./images/topology-nodes-complete-with-relationships.png)
 
-:information_source: Save the changes made so far in the topology editor.
+:information_source: Save the changes made so far in the topology modeler.
 
 ### 4. Set the Node Template Properties
 
@@ -143,7 +143,7 @@ During deployment the user is asked to provide values for every variable defined
 
 ![topology with properties shown in node templates](./images/topology-with-properties.png)
 
-:information_source: Save the changes made so far in the topology editor.
+:information_source: Save the changes made so far in the topology modeler.
 
 
 ### 5. Add the Deployment Artifacts
@@ -179,9 +179,9 @@ Click on the "Artifact Templates" button and search for the created artifact tem
 It is also possible to navigate directly from the topology modeler to the *deployment artifact* by clicking on the `DA-Ref` in the node.
 
 Open the files tab of the *deployment artifact* and upload the provided artifact template ([download link](https://raw.githubusercontent.com/UST-QuAntiL/tosca-definitions-qc-applications/main/artifacttemplates/https%253A%252F%252Fust-quantil.github.io%252Fquantum%252Fapplications%252Fartifacttemplates/ShorAlgo_Qiskit-w1/files/qiskit_app_algo.py)).
-Use the "Dateien Auswählen" button on the left or the file drop area to upload the python file.
+Use the "Select files" button on the left (labelled as "Dateien Auswählen") or the file drop area to upload the python file.
 
-![shor deployment artifact file upload](./images/da-template-files-tab.png)
+![Shor deployment artifact file upload](./images/da-template-files-tab.png)
 
 Now the service template is ready to be deployed.
 
