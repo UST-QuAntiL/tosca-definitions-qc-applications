@@ -99,7 +99,7 @@ For this we need the following additional nodes:
 
 ![complete topology with all node templates](./images/topology-nodes-complete.png)
 
-Now connect all the nodes with accordingly:
+Now connect all the nodes accordingly:
 
 | Node | Connection Type | Target Node | Comment |
 |:-----|:---------------:|:------------|:--------|
@@ -238,9 +238,9 @@ To monitor the deployment click on the :arrows_counterclockwise: "Reload Instanc
 Each instance also has a "show details" button.
 The instance details page allows viewing the logs and outputs of running and completed management plans.
 
-![details page of the instance beeing created](./images/tosca-ui-shor-instance.png)
+![details page of the instance being created](./images/tosca-ui-shor-instance.png)
 
 To watch the deployment in the console see the [Useful Commands](https://github.com/OpenTOSCA/opentosca-docker#useful-commands) section of the OpenTOSCA docker-compose repository.
-Attach to the logs of `container`, `engine-ia` and `engine-plan` in two seperate terminals with the provided commands for the best overview.
+Attach to the logs of `container`, `engine-ia` and `engine-plan` in two separate terminals with the provided commands for the best overview.
 
 To verify that your deployment was actually successful open <http://localhost:9992/> (change the port if you have chosen another port for the frontend before) in your browser.
