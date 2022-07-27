@@ -250,5 +250,5 @@ To verify that your deployment was actually successful open <http://localhost:99
 #### Tips for connectTo
 
 + If a component is already running, restart component during the connectTo execution.
-+ Save the process ID in a `${AppName}.pid` file. This ID can be used by the connectTo to end the process and start it again
++ Save the process ID in a `${AppName}.pid` file. This ID can be used by the connectTo to end the process and start it again.
   + How to get a process ID: <https://stackoverflow.com/a/17389526/6592788>.
