@@ -1,16 +1,14 @@
 #!/bin/sh
 
 cat << EOF > Config.toml
-[qhana.qhana_backend]
 
 # the port the server will listen on
-port = $BackendPort
+qhana.qhana_backend.port = $BackendPort
 
 # the domains allowed cors requests
-corsDomains = ["*"]
+qhana.qhana_backend.corsDomains = ["*"]
 
-[qhana.qhana_backend.internalUrlMap]
-"(?<=^|https?://)localhost(:[0-9]+)?" = "host.docker.internal\$1"
+qhana.qhana_backend.internalUrlMap."(?<=^|https?://)localhost(:[0-9]+)?" = "host.docker.internal\$1"
 
 EOF
 
