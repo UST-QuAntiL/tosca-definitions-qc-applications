@@ -33,7 +33,7 @@
                 <Operation name="connectTo">
                     <InputParameters>
                         <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="yes"/>
-                        <InputParameter name="TARGET_Port" type="xsd:string" required="yes"/>
+                        <InputParameter name="TARGET_GunicornAppPort" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
             </Interface>

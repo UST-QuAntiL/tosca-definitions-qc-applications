@@ -21,7 +21,7 @@
                     <InputParameters>
                         <InputParameter name="MinWorkers" type="xsd:integer" required="no"/>
                         <InputParameter name="MaxWorkers" type="xsd:integer" required="no"/>
-                        <InputParameter name="Port" type="xsd:integer" required="yes"/>
+                        <InputParameter name="GunicornAppPort" type="xsd:integer" required="yes"/>
                         <InputParameter name="AppModule" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
