@@ -184,10 +184,51 @@ Here you can add a readme and license if you want.
 ### 2. Create Lifecycle implementation
 
 Go to the *`implementation artifacts`* tab.
+Add the `install` artefact.
 
-TODO: write text, add script artefact
+![Add implementation artefact](./images/new_node_type/implementations/implementation_artefacts/add_new.png)
+
+Enter the following values:
+
+| Field | Value | Require |
+|:------|:------|:--------|
+| Name | Qiskit_Install | Yes |
+| Interface Name | http://opentosca.org/interfaces/lifecycle | Yes |
+| Operation Name | install | Yes |
+| Artifact Template Creation | Create Artifact Template | Yes |
+| Enable Versioning | True | No |
+| Type | ScriptArtefact | Yes |
+| Namespace | https://ust-quantil.github.io/artifacttemplates | Yes |
+
+![Install artefact](./images/new_node_type/implementations/implementation_artefacts/install_1.png)
+
+![Install artefact](./images/new_node_type/implementations/implementation_artefacts/install_2.png)
+
+Upload the script [install.sh](./images/new_node_type/implementations/implementation_artefacts/install.sh):
+
+![Upload artefact](./images/new_node_type/implementations/implementation_artefacts/install_upload.png)
 
 ### 3. Create ConnectsTo implementation
+
+Add the `connectTo` artefact.
+Enter the following values:
+
+| Field | Value | Require |
+|:------|:------|:--------|
+| Name | Qiskit_ConnectTo | Yes |
+| Interface Name | http://opentosca.org/interfaces/connectTo/ibmq | Yes |
+| Operation Name | connectTo | Yes |
+| Artifact Template Creation | Create Artifact Template | Yes |
+| Enable Versioning | True | No |
+| Type | ScriptArtefact | Yes |
+| Namespace | https://ust-quantil.github.io/artifacttemplates | Yes |
+
+![Connect-to artefact](./images/new_node_type/implementations/implementation_artefacts/connect_to_1.png)
+![Connect-to artefact](./images/new_node_type/implementations/implementation_artefacts/connect_to_2.png)
+
+Upload the script [connectTo.sh](./images/new_node_type/implementations/implementation_artefacts/connectTo.sh):
+
+![Connect-to upload](./images/new_node_type/implementations/implementation_artefacts/connect_to_upload.png)
 
 :information_source: Multiple connects tos with config updates: Restart things if needed; Write config to disc; PID files
 
