@@ -19,18 +19,28 @@ For this tutorial only the winery container needs to be started.
 
 ## Create a new Node
 
+This chapter is an example on how to create a new `Node Type`.
+We will recreate the Qiskit node type from the repository `https://github.com/UST-QuAntiL/tosca-definitions-quantil` .
+
 ### 1. Start the Winery
 
 Before a node can be created, first start a winery instance with the main repository set to where the node should be created.
 
 We will use the `https://github.com/UST-QuAntiL/tosca-definitions-quantil` repository for this tutorial.
 
+To do this you can open the docker-compose.yml file and replace the WINERY_REPOSITORY_URL of the winery container. To start only the winery container you can use the command `docker-compose up winery` .
+
 :information_source: Reusable *node types*, e.g., nodes that will be used by multiple applications should be placed in a common repository. Application specific node types should be placed in the application specific repositories.
 
 
 ### 2. Create a new Node
 
-Open the `Node Types` tab in the winery and click on the `Add new` button on the right.
+Open Winery in your browser (default URL: http://localhost:8080) and click on the `Node Types` tab.
+Click on the `Add new` button on the right.
+
+![Create new node type in winery](./images/new_node_type/new.png)
+
+Enter the following values into the dialog and click on `Add`:
 
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
@@ -39,7 +49,11 @@ Open the `Node Types` tab in the winery and click on the `Add new` button on the
 | Version | latest | (optional) |
 | Namespace | `https://ust-quantil.github.io/nodetypes` ||
 
+![New node type dialog](./images/new_node_type/new_dialog.png)
+
 Optionally create a README, choose a license and customize the node appeareance.
+
+![Node type readme](./images/new_node_type/readme.png)
 
 :information_source: In the case that an existing node should be extended go to the inheritance tab and select the node type to inherit from.
 
@@ -50,12 +64,16 @@ The original Qiskit node does not have a *property*, but for this tutorial we wi
 
 Select `Custom key/value pairs` to create new properties. Then click on the `Add` button to create a new Property.
 
+![Node type new property](./images/new_node_type/new_property.png)
+
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
 | Name | `qiskitVersion` | |
 | Type | `xsd:string` | |
 
 Leave the rest empty and hit `Save`.
+
+![Node type new property dialog](./images/new_node_type/new_property_dialog.png)
 
 ### 4. Create the Lifecycle Interface
 
@@ -67,9 +85,15 @@ Click on the `Generate Lifecycle Interface` to create a new lifecycle interface 
 
 :information_source: The lifecycle interface defines methods for, e.g., installing, configuring, and starting a node type.
 
+![Generate Lifecycle Interface](./images/new_node_type/interfaces/generate_interfaces.png)
+
 For our quiskit node we only need to install the dependency so we can delete all other methods of the lifecycle interface.
 
+![Delete unused operations](./images/new_node_type/interfaces/delete_operations.png)
+
 Click on the `install` method to define input parameters. Click on the `Add` button of the input parameters.
+
+![Add input parameters](./images/new_node_type/interfaces/add_input_parameters.png)
 
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
@@ -77,16 +101,22 @@ Click on the `install` method to define input parameters. Click on the `Add` but
 | Type | `xsd:string` | |
 | Required | False | |
 
-Hit `Add` to add the input parameter.
+![Add inputer parameters dialog](./images/new_node_type/interfaces/add_input_parameters_dialog.png)
+
+Hit `Add` to add the input parameter and `Save` to save the changes you made.
 This makes the (optional) `qiskitVersion` property available to all implementations of this interface method.
+
+![Save](./images/new_node_type/interfaces/save.png)
 
 :information_source: The properties can come from the same node or any node this node depends on in a topology (e.g., with a hostedOn edge). Therefore, it is good to choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
 
 
 ### 5. Create the Connection Interface
 
-Nodes that can connect to other nodes, e.g., our quiskit node should be able to connect to the IBMQ cloud, an interface implementing that connection needs to be added as well.
+Nodes that can connect to other nodes, e.g., our qiskit node should be able to connect to the IBMQ cloud, an interface implementing that connection needs to be added as well.
 Click on the `Add` button of interfaces to create a new one.
+
+![Add interface](./images/new_node_type/interfaces/connectto/add_interface.png)
 
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
@@ -94,13 +124,15 @@ Click on the `Add` button of interfaces to create a new one.
 
 :information_source: The interface name can be freely chosen for this. Opentosca will execute **any** interface with a *connectsTo* method for a *connectsTo* node relation. This can be used to implement multiple different connections. However, it is a good practise to include the connection type in the interface name.
 
-Select the created interface and add a new method.
+Select the created interface and add a new operation.
 
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
 | Name | `connectTo` | |
 
-* TODO add input parameters (see real qiskit node)
+![Add operation](./images/new_node_type/interfaces/connectto/add_operation.png)
+
+Add the following input parameters:
 
 | Name | Type | Required |
 |:-------|:------|:---------------|
@@ -111,23 +143,43 @@ Select the created interface and add a new method.
 | IBMQ_PROJECT |xsd:string | NO |
 | IBMQ_HUB |xsd:string | NO |
 
+![Add input parameters](./images/new_node_type/interfaces/connectto/add_input_parameters.png)
+
+TODO:
 :information_source: SOURCE_ and TARGET_ prefixes...
 
 :information_source: Interface methods will only be called if their properties can be satisfied/filled in => use this to differentiate between different connectsTo implementations
+
+Save the changes you made.
+
+![Save](./images/new_node_type/interfaces/connectto/save.png)
 
 ### 6. Add an Implementation
 
 Open the `implementations` tab and click on `Add` to create a new implementation.
 
-<!-- Rest wie vorausgefüllt -->
-| Namespace | `https://ust-quantil.github.io/nodetypeimplementations` | |
+![Implementations](./images/new_node_type/implementations/implementations.png)
+
+| Field | Value | Required |
+|:------|:------|:---------|
+| Enable Versioning | True | No |
+| Namespace | `https://ust-quantil.github.io/nodetypeimplementations` | YES |
+
+Use the default values for the rest of the fields.
+
+![new implementation](./images/new_node_type/implementations/new_implementation_dialog.png)
+
+The new implementation opens automatically.
 
 
 ## Implement the Node Type
 
-### 1. Open the created node type implementation
+### 1. Add infos (optional)
 
-create readme license etc.
+Go to the new implementation if it's not open already.
+Here you can add a readme and license if you want.
+
+![Implementation readme](./images/new_node_type/implementations/implementation_readme.png)
 
 ### 2. Create Lifecycle implementation
 
