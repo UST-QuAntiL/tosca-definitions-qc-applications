@@ -208,7 +208,23 @@ Upload the script [install.sh](./images/new_node_type/implementations/implementa
 
 ![Upload artefact](./images/new_node_type/implementations/implementation_artefacts/install_upload.png)
 
-### 3. Create ConnectsTo implementation
+### 3. Explanation of the install script
+
+```bash
+#!/bin/bash
+
+sudo apt-get update -qq
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip -qq
+	
+pip3 install --upgrade pip
+pip install qiskit==${qiskitVersion}
+
+```
+
+This script installs Pip, updates it and then installs Qiskit with the specified version.
+The version can be specified with the input parameter `qiskitVersion` of install interface and is available in the script as an environment variable.
+
+### 4. Create ConnectsTo implementation
 
 Add the `connectTo` artefact.
 Enter the following values:
@@ -232,3 +248,25 @@ Upload the script [connectTo.sh](./images/new_node_type/implementations/implemen
 
 :information_source: Multiple connects tos with config updates: Restart things if needed; Write config to disc; PID files
 
+### 5. Explanation of the ConnectsTo script
+
+```bash
+#!/bin/bash
+
+sudo mkdir -p qiskit_app
+
+echo "PROVIDER=${PROVIDER}" >> qiskit_app/.env
+
+echo "AER_BACKEND_NAME=${AER_BACKEND_NAME}" >> qiskit_app/.env
+
+echo "IBMQ_TOKEN=${IBMQ_TOKEN}" >> qiskit_app/.env
+echo "IBMQ_BACKEND_NAME=${IBMQ_BACKEND_NAME}" >> qiskit_app/.env
+echo "IBMQ_HUB=${IBMQ_HUB}" >> qiskit_app/.env
+echo "IBMQ_GROUP=${IBMQ_GROUP}" >> qiskit_app/.env
+echo "IBMQ_PROJECT=${IBMQ_PROJECT}" >> qiskit_app/.env
+```
+
+This script helps to make the user input available to the Qiskit application.
+Again, the values of the input parameters are available in environment variables.
+This script writes the values of the input parameters of the `connectTo` interface to the file `qiskit_app/.env`.
+The Qiskit application can then read these values from the file.
