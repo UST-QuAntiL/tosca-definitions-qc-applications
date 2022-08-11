@@ -1,10 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-cat << EOF >> Config.test
+# install gettext for envsubst
+sudo apt-get update -qq
+sudo apt-get -qqy install gettext-base
 
-"${TARGET_ContainerIP}:${TARGET_BackendPort}"
+export QHANA_BACKEND_PROTOCOL="http:"
+export QHANA_BACKEND_HOSTNAME="${TARGET_ContainerIP}"
+export QHANA_BACKEND_PORT="${TARGET_BackendPort}"
 
-EOF
+
+envsubst < /var/www/html/${SOURCE_AppName}/assets/env.js.template > /var/www/html/${SOURCE_AppName}/assets/env.js
 
 
 sleep 10

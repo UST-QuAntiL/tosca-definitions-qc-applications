@@ -8,6 +8,7 @@
                     <InputParameters>
                         <InputParameter name="TARGET_ContainerIP" type="xsd:string" required="yes"/>
                         <InputParameter name="TARGET_BackendPort" type="xsd:string" required="yes"/>
+                        <InputParameter name="SOURCE_AppName" type="xsd:string" required="yes"/>
                     </InputParameters>
                 </Operation>
             </Interface>
