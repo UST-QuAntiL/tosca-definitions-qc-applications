@@ -3,9 +3,9 @@
     <ServiceTemplate name="QHAna_w3" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="QHAna_w3">
         <BoundaryDefinitions>
             <Properties>
-                <ns1:selfserviceApplicationUrl xmlns:ns1="http://www.eclipse.org/winery/model/selfservice"/>
+                <ns1:QHAna-UI_Endpoint xmlns:ns1="http://www.eclipse.org/winery/model/selfservice"/>
                 <PropertyMappings>
-                    <PropertyMapping serviceTemplatePropertyRef="/*[local-name()='selfserviceApplicationUrl']" targetObjectRef="DockerContainer_w1_0" targetPropertyRef="concat('http://', DockerContainer_w1_0.Properties.ContainerIP, ':', DockerContainer_w1_0.Properties.Port)"/>
+                    <PropertyMapping serviceTemplatePropertyRef="/*[local-name()='QHAna-UI_Endpoint']" targetObjectRef="DockerContainer_w1_0" targetPropertyRef="concat('http://', DockerContainer_w1_0.Properties.ContainerIP, ':', DockerContainer_w1_0.Properties.Port)"/>
                 </PropertyMappings>
             </Properties>
         </BoundaryDefinitions>
