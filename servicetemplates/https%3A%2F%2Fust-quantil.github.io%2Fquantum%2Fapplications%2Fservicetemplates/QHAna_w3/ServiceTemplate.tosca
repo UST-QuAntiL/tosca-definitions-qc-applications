@@ -10,7 +10,7 @@
             </Properties>
         </BoundaryDefinitions>
         <TopologyTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="NGINX" minInstances="1" maxInstances="1" type="otntyIgeneral:NGINX_latest-w1" id="NGINX_latest-w1_0" winery:x="415" winery:y="460">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="NGINX" minInstances="1" maxInstances="1" type="otntyIgeneral:NGINX_latest-w1" id="NGINX_latest-w1_0" winery:x="348" winery:y="530">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <component_version/>
@@ -18,7 +18,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerEngine_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerEngine_w1" id="DockerEngine_w1_0" winery:x="767" winery:y="1112">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerEngine_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerEngine_w1" id="DockerEngine_w1_0" winery:x="1057" winery:y="829">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DockerEngineURL>get_input: DockerEngineURL</DockerEngineURL>
@@ -26,9 +26,9 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Gunicorn" minInstances="1" maxInstances="1" type="otntyIgeneral:Gunicorn_20.1.0-w1" id="Gunicorn_20.1.0-w1_0" winery:x="1584" winery:y="554"/>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Python" minInstances="1" maxInstances="1" type="otntyIgeneral:Python_3-w1" id="Python_3-w1_0" winery:x="1879" winery:y="659"/>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Java" minInstances="1" maxInstances="1" type="otntyIgeneral:Java_11-w1" id="Java_11-w1_0" winery:x="758" winery:y="447">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Gunicorn" minInstances="1" maxInstances="1" type="otntyIgeneral:Gunicorn_20.1.0-w1" id="Gunicorn_20.1.0-w1_0" winery:x="1591" winery:y="530"/>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Python" minInstances="1" maxInstances="1" type="otntyIgeneral:Python_3-w1" id="Python_3-w1_0" winery:x="1402" winery:y="629"/>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Java" minInstances="1" maxInstances="1" type="otntyIgeneral:Java_11-w1" id="Java_11-w1_0" winery:x="666" winery:y="530">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <component_version/>
@@ -36,7 +36,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w2" id="MariaDBMS_10-w2_0" winery:x="1195" winery:y="631">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDBMS" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDBMS_10-w2" id="MariaDBMS_10-w2_0" winery:x="1057" winery:y="530">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBMSUser>admin</DBMSUser>
@@ -45,7 +45,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_0" winery:x="1345" winery:y="250">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_0" winery:x="1234" winery:y="330">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>plugin_runner_db</DBName>
@@ -54,7 +54,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_1" winery:x="1089" winery:y="273">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_1" winery:x="959" winery:y="318">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>QHAnaExperiments</DBName>
@@ -66,14 +66,14 @@
                     <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="SQL-QHAna-Backend" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:SQL-QHana-Backend-DA_w2"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Redis" minInstances="1" maxInstances="1" type="otntyIgeneral:Redis_6-w1" id="Redis_6-w1_1" winery:x="2107" winery:y="375">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Redis" minInstances="1" maxInstances="1" type="otntyIgeneral:Redis_6-w1" id="Redis_6-w1_1" winery:x="1893" winery:y="530">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <RedisPort>9995</RedisPort>
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_0" winery:x="403" winery:y="852">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_0" winery:x="348" winery:y="740">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9999</Port>
@@ -86,7 +86,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_1" winery:x="717" winery:y="766">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_1" winery:x="666" winery:y="667">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9998</Port>
@@ -99,7 +99,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_2" winery:x="1046" winery:y="845">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_2" winery:x="1057" winery:y="667">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9996</Port>
@@ -112,7 +112,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_3" winery:x="1613" winery:y="794">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_3" winery:x="1591" winery:y="740">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9997</Port>
@@ -125,7 +125,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_4" winery:x="2050" winery:y="956">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_4" winery:x="1893" winery:y="829">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <Port>9995</Port>
@@ -138,7 +138,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="IBMQ_w1" minInstances="1" maxInstances="1" type="ntyIgeneral:IBMQ_w1" id="IBMQ_w1_0" winery:x="2352" winery:y="222">
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="IBMQ_w1" minInstances="1" maxInstances="1" type="ntyIgeneral:IBMQ_w1" id="IBMQ_w1_0" winery:x="1975" winery:y="263">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <PROVIDER/>
@@ -150,7 +150,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_2" winery:x="1540" winery:y="389">
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="MariaDB" minInstances="1" maxInstances="1" type="otntyIgeneral:MariaDB_10-w2" id="MariaDB_10-w2_2" winery:x="1274" winery:y="418">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <DBName>muse_db</DBName>
@@ -162,7 +162,7 @@
                     <DeploymentArtifact xmlns:otatyIgeneral="http://opentosca.org/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="Muse-SQL-DA" artifactType="otatyIgeneral:SQLArtifact" artifactRef="quantumApplicationsArtifactTemplates:Mini-Muse-SQL-DA_w1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHAna-PluginRunner_latest-w2" id="QHAna-PluginRunner_latest-w2_0" winery:x="1915" winery:y="128">
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHAna-PluginRunner_latest-w2" id="QHAna-PluginRunner_latest-w2_0" winery:x="1594" winery:y="263">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <MaxWorkers>4</MaxWorkers>
@@ -175,7 +175,7 @@
                     <DeploymentArtifact xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="QHAna-Plugins" artifactType="ToscaBaseTypes:ArchiveArtifact" artifactRef="quantumApplicationsArtifactTemplates:QHana-PluginRunner-Plugins-DA_w1"/>
                 </DeploymentArtifacts>
             </NodeTemplate>
-            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w2" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w2" id="QHana-Backend_w2_0" winery:x="771" winery:y="149">
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHana-Backend_w2" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHana-Backend_w2" id="QHana-Backend_w2_0" winery:x="666" winery:y="263">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <context_root/>
@@ -183,7 +183,7 @@
                     </Properties>
                 </Properties>
             </NodeTemplate>
-            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-UI_w1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHAna-UI_w1" id="QHAna-UI_w1_0" winery:x="336" winery:y="159">
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="QHAna-UI_w1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:QHAna-UI_w1" id="QHAna-UI_w1_0" winery:x="348" winery:y="263">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
                         <AppName>qhanaui</AppName>
