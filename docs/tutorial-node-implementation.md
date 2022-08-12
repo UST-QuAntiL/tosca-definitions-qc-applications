@@ -33,6 +33,8 @@ For this tutorial only the winery container needs to be started.
 4. [Create ConnectsTo implementation](#4-create-connectsto-implementation)
 5. [Explanation of the ConnectTo script](#5-explanation-of-the-connectto-script)
 
+[Deployment Artefacts](#deployment-artefacts)
+
 [Tips and tricks](#tips-and-tricks)
 
 
@@ -287,6 +289,36 @@ Again, the values of the input parameters are available in environment variables
 This script writes the values of the input parameters of the `connectTo` interface to the file `qiskit_app/.env`.
 The Qiskit application can then read these values from the file.
 
+<!-- TODO: Python Artefact -->
+
+## Deployment artefacts
+
+Deployment artefacts implement the business logic of an application e.g. the jar file for a Tomcat web server.
+If you want to create a node type that has e.g. a jar file as deployment artefact, you need to also create an interface with an implementation artefact that can execute this file.
+
+**Example with a jar file as deployment artefact**
+- create a `node type`
+- create an `interface` with a `start operation` for this `node type`
+- create a `node type implementation` for this `node type`
+- add a `deployment artefact` to the `node type implementation`
+![deployment artefact](./images/new_node_type/deployment%20artefacts/jar_artefact.png)
+- upload the `jar file` to the `deployment artefact`
+- add a `ScriptArtefact` as `implementation artefact` for the `start operation` to the `node type implementation`
+![implementation artefact](./images/new_node_type/deployment%20artefacts/start_artefact.png)
+- upload a `script` to the `ScriptArtefact` that executes the `jar file`
+
+Example script to execute a `jar file`:
+```bash
+#!/bin/bash
+
+echo "Starting QHana-Backend"
+
+cd qhana_backend
+java -jar qhana_backend.jar
+echo "Done"
+
+sleep 5
+```
 
 ## Tips and tricks
 
