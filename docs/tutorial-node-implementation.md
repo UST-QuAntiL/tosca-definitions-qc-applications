@@ -248,7 +248,7 @@ Upload the script [connectTo.sh](./images/new_node_type/implementations/implemen
 
 :information_source: Multiple connects tos with config updates: Restart things if needed; Write config to disc; PID files
 
-### 5. Explanation of the ConnectsTo script
+### 5. Explanation of the ConnectTo script
 
 ```bash
 #!/bin/bash
@@ -270,3 +270,14 @@ This script helps to make the user input available to the Qiskit application.
 Again, the values of the input parameters are available in environment variables.
 This script writes the values of the input parameters of the `connectTo` interface to the file `qiskit_app/.env`.
 The Qiskit application can then read these values from the file.
+
+
+### 6. Tips and tricks
+
+**Access input parameters of source and target nodes:**
+In an implementation artefact of a `connectTo` interface you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node respectively.
+This helps in cases where the source and target node have an input parameter with the same name.
+
+**Ways to debug implementations:**
+- Enter the container and execute the implementation manually
+- Write debug information (logs) to a file, then copy that file from the container to your disk
