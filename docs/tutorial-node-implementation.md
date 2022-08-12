@@ -69,7 +69,7 @@ Select `Custom key/value pairs` to create new properties. Then click on the `Add
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
 | Name | `qiskitVersion` | |
-| Type | `xsd:string` | |
+| Type | `xsd:string` | data type |
 
 Leave the rest empty and hit `Save`.
 
@@ -98,8 +98,8 @@ Click on the `install` method to define input parameters. Click on the `Add` but
 | Field | Value | Explanation |
 |:-------|:------|:---------------|
 | Name | `qiskitVersion` | |
-| Type | `xsd:string` | |
-| Required | False | |
+| Type | `xsd:string` | data type |
+| Required | False | if the user needs to supply a value |
 
 ![Add inputer parameters dialog](./images/new_node_type/interfaces/add_input_parameters_dialog.png)
 
@@ -145,9 +145,6 @@ Add the following input parameters:
 
 ![Add input parameters](./images/new_node_type/interfaces/connectto/add_input_parameters.png)
 
-TODO:
-:information_source: SOURCE_ and TARGET_ prefixes...
-
 :information_source: Interface methods will only be called if their properties can be satisfied/filled in => use this to differentiate between different connectsTo implementations
 
 Save the changes you made.
@@ -190,7 +187,7 @@ Add the `install` artefact.
 
 Enter the following values:
 
-| Field | Value | Require |
+| Field | Value | Required |
 |:------|:------|:--------|
 | Name | Qiskit_Install | Yes |
 | Interface Name | http://opentosca.org/interfaces/lifecycle | Yes |
@@ -229,7 +226,7 @@ The version can be specified with the input parameter `qiskitVersion` of install
 Add the `connectTo` artefact.
 Enter the following values:
 
-| Field | Value | Require |
+| Field | Value | Required |
 |:------|:------|:--------|
 | Name | Qiskit_ConnectTo | Yes |
 | Interface Name | http://opentosca.org/interfaces/connectTo/ibmq | Yes |
