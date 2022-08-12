@@ -16,13 +16,32 @@ Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opent
 If the modeled node should be comitted to a repository it is best to use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
 For this tutorial only the winery container needs to be started.
 
+**Table of contents**
+
+[Create a new Node](#create-a-new-node)
+1. [Start Winery](#1-start-winery)
+2. [Create a new Node](#2-create-a-new-node)
+3. [Define Node Properties](#3-define-node-properties)
+4. [Create the Lifecycle Interface](#4-create-the-lifecycle-interface)
+5. [Create the Connection Interface](#5-create-the-connection-interface)
+6. [Add an Implementation](#6-add-an-implementation)
+
+[Implement the Node Type](#implement-the-node-type)
+1. [Add infos (optional)](#1-add-infos-optional)
+2. [Create Lifecycle implementation](#2-create-lifecycle-implementation)
+3. [Explanation of the install script](#3-explanation-of-the-install-script)
+4. [Create ConnectsTo implementation](#4-create-connectsto-implementation)
+5. [Explanation of the ConnectTo script](#5-explanation-of-the-connectto-script)
+
+[Tips and tricks](#tips-and-tricks)
+
 
 ## Create a new Node
 
 This chapter is an example on how to create a new `Node Type`.
 We will recreate the Qiskit node type from the repository `https://github.com/UST-QuAntiL/tosca-definitions-quantil` .
 
-### 1. Start the Winery
+### 1. Start Winery
 
 Before a node can be created, first start a winery instance with the main repository set to where the node should be created.
 
@@ -269,7 +288,7 @@ This script writes the values of the input parameters of the `connectTo` interfa
 The Qiskit application can then read these values from the file.
 
 
-### 6. Tips and tricks
+## Tips and tricks
 
 **Access input parameters of source and target nodes:**
 In an implementation artefact of a `connectTo` interface you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node respectively.
