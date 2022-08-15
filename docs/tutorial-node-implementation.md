@@ -33,7 +33,9 @@ For this tutorial only the winery container needs to be started.
 4. [Create ConnectsTo implementation](#4-create-connectsto-implementation)
 5. [Explanation of the ConnectTo script](#5-explanation-of-the-connectto-script)
 
-[Deployment Artefacts](#deployment-artefacts)
+[Example of a PythonScriptArtifact](#example-of-a-pythonscriptartifact)
+
+[Deployment Artifacts](#deployment-artifacts)
 
 [Tips and tricks](#tips-and-tricks)
 
@@ -202,9 +204,9 @@ Here you can add a readme and license if you want.
 ### 2. Create Lifecycle implementation
 
 Go to the *`implementation artifacts`* tab.
-Add the `install` artefact.
+Add the `install` artifact.
 
-![Add implementation artefact](./images/new_node_type/implementations/implementation_artefacts/add_new.png)
+![Add implementation artifact](./images/new_node_type/implementations/implementation_artifacts/add_new.png)
 
 Enter the following values:
 
@@ -215,16 +217,16 @@ Enter the following values:
 | Operation Name | install | Yes |
 | Artifact Template Creation | Create Artifact Template | Yes |
 | Enable Versioning | True | No |
-| Type | ScriptArtefact | Yes |
+| Type | ScriptArtifact | Yes |
 | Namespace | https://ust-quantil.github.io/artifacttemplates | Yes |
 
-![Install artefact](./images/new_node_type/implementations/implementation_artefacts/install_1.png)
+![Install artifact](./images/new_node_type/implementations/implementation_artifacts/install_1.png)
 
-![Install artefact](./images/new_node_type/implementations/implementation_artefacts/install_2.png)
+![Install artifact](./images/new_node_type/implementations/implementation_artifacts/install_2.png)
 
-Upload the script [install.sh](./images/new_node_type/implementations/implementation_artefacts/install.sh):
+Upload the script [install.sh](./images/new_node_type/implementations/implementation_artifacts/install.sh):
 
-![Upload artefact](./images/new_node_type/implementations/implementation_artefacts/install_upload.png)
+![Upload artifact](./images/new_node_type/implementations/implementation_artifacts/install_upload.png)
 
 ### 3. Explanation of the install script
 
@@ -244,7 +246,7 @@ The version can be specified with the input parameter `qiskitVersion` of install
 
 ### 4. Create ConnectsTo implementation
 
-Add the `connectTo` artefact.
+Add the `connectTo` artifact.
 Enter the following values:
 
 | Field | Value | Required |
@@ -254,15 +256,15 @@ Enter the following values:
 | Operation Name | connectTo | Yes |
 | Artifact Template Creation | Create Artifact Template | Yes |
 | Enable Versioning | True | No |
-| Type | ScriptArtefact | Yes |
+| Type | ScriptArtifact | Yes |
 | Namespace | https://ust-quantil.github.io/artifacttemplates | Yes |
 
-![Connect-to artefact](./images/new_node_type/implementations/implementation_artefacts/connect_to_1.png)
-![Connect-to artefact](./images/new_node_type/implementations/implementation_artefacts/connect_to_2.png)
+![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_1.png)
+![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_2.png)
 
-Upload the script [connectTo.sh](./images/new_node_type/implementations/implementation_artefacts/connectTo.sh):
+Upload the script [connectTo.sh](./images/new_node_type/implementations/implementation_artifacts/connectTo.sh):
 
-![Connect-to upload](./images/new_node_type/implementations/implementation_artefacts/connect_to_upload.png)
+![Connect-to upload](./images/new_node_type/implementations/implementation_artifacts/connect_to_upload.png)
 
 :information_source: Multiple connects tos with config updates: Restart things if needed; Write config to disc; PID files
 
@@ -289,23 +291,151 @@ Again, the values of the input parameters are available in environment variables
 This script writes the values of the input parameters of the `connectTo` interface to the file `qiskit_app/.env`.
 The Qiskit application can then read these values from the file.
 
-<!-- TODO: Python Artefact -->
+## Example of a PythonScriptArtifact
+This script installs `deployment artifacts` and requirements of the `node type` QHAna-PluginRunner version latest-w2.
 
-## Deployment artefacts
+```python
+# !/usr/bin/env python
+import sys
+import subprocess
+from collections import ChainMap
+from os import environ
+from pathlib import Path
+from zipfile import ZipFile
+from shutil import copyfile
+from shlex import join as cmd_join
+from subprocess import PIPE
 
-Deployment artefacts implement the business logic of an application e.g. the jar file for a Tomcat web server.
-If you want to create a node type that has e.g. a jar file as deployment artefact, you need to also create an interface with an implementation artefact that can execute this file.
 
-**Example with a jar file as deployment artefact**
+def argv_to_dict(argv):
+	return dict(arg.split('=', maxsplit=1) for arg in argv if '=' in arg)
+
+
+def printOutput(dict):
+	for key in dict:
+		print(str(key) + '=' + str(dict[key]))
+
+
+def install_requirements(environ):
+	cmd = ['apt-get', 'update', '-qq']
+	print(cmd_join(cmd))
+	subprocess.run(cmd)
+	cmd = ['apt-get', 'install', 'git', '-qq']
+	print(cmd_join(cmd))
+	subprocess.run(cmd)
+
+
+def install_deployment_artifacts(environ):
+	das = (da.strip() for da in environ.get('DAs', '').split(';') if da.strip())
+	plugin_runner_found = False
+	for da in das:
+		print('DA:', da)
+		result = da.split(',', maxsplit=1)
+		da_path = Path('/') / environ.get('CSAR', '').strip('/') / result[1].lstrip('/')
+		if da_path.suffix == '.zip':
+			if result[0] == 'QHAna-PluginRunner_DA':
+				plugin_runner_found = True
+				print('install plugin runner DA', *result)
+				install_plugin_runner(da_path)
+			else:
+				print('install plugin DA', *result)
+				install_plugin(da_path)
+	if not plugin_runner_found:
+		print('ERROR: No plugin runner DA!!!')
+
+
+def extract_zip(source, target):
+	target.mkdir(parents=True, exist_ok=True)
+	with source.open(mode='rb') as zip_file:
+		ZipFile(zip_file).extractall(target)
+
+
+def install_plugin_runner(zip_da):
+	if not zip_da.exists():
+		print('ERROR: DA not found at ', zip_da)
+		return
+	target = Path('src')
+	extract_zip(zip_da, target)
+	# TODO unpin versions if possible
+	cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'mysql-connector-python==8.0.26']
+	print(cmd_join(cmd))
+	subprocess.run(cmd)
+	for f in ['tasks.py', 'pyproject.toml', 'poetry.lock']:
+		copyfile(target / f, Path('.') / f)
+	cmd = ['python3', '-m', 'poetry', 'export', '--without-hashes']
+	requirments = subprocess.run(cmd, stdout=PIPE)
+	req_file = Path('requirements.txt')
+	with req_file.open(mode='w') as f:
+		f.write(f'{target.resolve()}\n')
+		f.write(requirments.stdout.decode())
+	cmd = ['python3', '-m', 'pip', 'install', '-r', str(req_file.resolve())]
+	print(cmd_join(cmd))
+	subprocess.run(cmd)
+
+
+def install_plugin(zip_da):
+	if not zip_da.exists():
+		print('ERROR: DA not found at ', zip_da)
+		return
+	extract_zip(zip_da, Path('plugins'))
+
+
+def post_install(environ):
+	extra_env = {
+		'FLASK_APP': 'qhana_plugin_runner',
+		'FLASK_ENV': 'production',
+		'PLUGIN_FOLDERS': 'plugins:git-plugins'
+	}
+
+	cmd = ['python3', '-m', 'invoke', 'load-git-plugins']
+	print(cmd_join(cmd), 'env:', extra_env)
+	subprocess.run(cmd, env=ChainMap(extra_env, environ))
+	cmd = ['python3', '-m', 'flask', 'install']
+	print(cmd_join(cmd), 'env:', extra_env)
+	subprocess.run(cmd, env=ChainMap(extra_env, environ))
+
+
+def main(argv):
+	print('pwd', Path('.').resolve())
+	print(argv)
+	env = ChainMap(argv_to_dict(argv), environ)
+	install_requirements(env)
+	install_deployment_artifacts(env)
+	post_install(env)
+
+
+if __name__ == "__main__":
+	main(sys.argv[1:])
+```
+
+### Explanation
+
+`PythonScriptArtifacts` get the user input not as environment variables but as commandline arguments.
+The function `argv_to_dict` converts the commandline arguments to a dictionary for easy access.
+The `ChainMap` class is used to merge multiple dictionary i.e. to merge the commandline arguments with the environment variables.
+`install_requirements` installs git.
+The file names of the `deployment artifacts` are passed as environment variables to the script under the key `DAs` and the path to the unzipped `CSAR` folder can be found under the key `CSAR`.
+The function `install_deployment_artifacts` calculates the paths to the `deployment artifacts`,
+checks the type and calls the right install functions.
+`install_plugin_runner` unpacks the passed `deployment artifact` and installs required Python packages, `install_plugin` unpacks the passed `deployment artifact` into the plugins folder.
+At the end, `post_install` executes commands to configure the application and install more dependencies.
+
+
+## Deployment Artifacts
+
+`Deployment artifacts` implement the business logic of an application e.g. the jar file for a Tomcat web server.
+If you want to create a node type that has e.g. a jar file as deployment artifact, you need to also create an interface with an implementation artifact that can execute this file.
+
+**Example with a jar file as deployment artifact**
 - create a `node type`
 - create an `interface` with a `start operation` for this `node type`
 - create a `node type implementation` for this `node type`
-- add a `deployment artefact` to the `node type implementation`
-![deployment artefact](./images/new_node_type/deployment%20artefacts/jar_artefact.png)
-- upload the `jar file` to the `deployment artefact`
-- add a `ScriptArtefact` as `implementation artefact` for the `start operation` to the `node type implementation`
-![implementation artefact](./images/new_node_type/deployment%20artefacts/start_artefact.png)
-- upload a `script` to the `ScriptArtefact` that executes the `jar file`
+- add a `deployment artifact` to the `node type implementation`
+![deployment artifact](./images/new_node_type/deployment%20artifacts/jar_artifact.png)
+- upload the `jar file` to the `deployment artifact`
+- add a `ScriptArtifact` as `implementation artifact` for the `start operation` to the `node type implementation`
+![implementation artifact](./images/new_node_type/deployment%20artifacts/start_artifact.png)
+- upload a `script` to the `ScriptArtifact` that executes the `jar file`
 
 Example script to execute a `jar file`:
 ```bash
@@ -323,7 +453,7 @@ sleep 5
 ## Tips and tricks
 
 **Access input parameters of source and target nodes:**
-In an implementation artefact of a `connectTo` interface you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node respectively.
+In an `implementation artifact` of a `connectTo` interface you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node respectively.
 This helps in cases where the source and target node have an input parameter with the same name.
 
 **Ways to debug implementations:**
