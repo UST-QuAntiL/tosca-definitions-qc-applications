@@ -1,7 +1,7 @@
 # Tutorial: Create Custom Nodes
 
-This tutorial takes you through the steps to create a new node with implementation to use in a TOSCA topology.
-The tutorial will lead you throgh recreating a node from the [Tutorial: Model and Deploy an Application with OpenTOSCA](./tutorial-model-and-deploy.md).
+This tutorial takes you through the steps to create a new node with implementation to use it in a TOSCA topology.
+The tutorial will lead you through recreating a node from the [Tutorial: Model and Deploy an Application with OpenTOSCA](./tutorial-model-and-deploy.md).
 
 :information_source: Terms in *italics* can be found in the [glossary](tosca-glossary.md).
 
@@ -13,8 +13,8 @@ The tutorial will lead you throgh recreating a node from the [Tutorial: Model an
 
 Before starting with this tutorial clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the relevant sections of the README once (e.g. the first two sections, tips and tricks and troubleshooting).
 
-If the modeled node should be comitted to a repository it is best to use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
-For this tutorial only the winery container needs to be started.
+If the modeled node should be committed to a repository, it is best to use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
+For this tutorial, only the winery container needs to be started.
 
 **Table of contents**
 
@@ -42,7 +42,7 @@ For this tutorial only the winery container needs to be started.
 
 ## Create a new Node
 
-This chapter is an example on how to create a new `Node Type`.
+This chapter is an example of how to create a new `Node Type`.
 We will recreate the Qiskit node type from the repository `https://github.com/UST-QuAntiL/tosca-definitions-quantil` .
 
 ### 1. Start Winery
@@ -51,9 +51,9 @@ Before a node can be created, first start a winery instance with the main reposi
 
 We will use the `https://github.com/UST-QuAntiL/tosca-definitions-quantil` repository for this tutorial.
 
-To do this you can open the docker-compose.yml file and replace the WINERY_REPOSITORY_URL of the winery container. To start only the winery container you can use the command `docker-compose up winery` .
+To do this, you can open the docker-compose.yml file and replace the WINERY_REPOSITORY_URL of the winery container. To start only the winery container, you can use the command `docker-compose up winery`.
 
-:information_source: Reusable *node types*, e.g., nodes that will be used by multiple applications should be placed in a common repository. Application specific node types should be placed in the application specific repositories.
+:information_source: Reusable *node types*, e.g., nodes that multiple applications use, should be placed in a common repository. On the other hand, application-specific node types should be placed in the application-specific repositories.
 
 
 ### 2. Create a new Node
@@ -74,16 +74,16 @@ Enter the following values into the dialog and click on `Add`:
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
-Optionally create a README, choose a license and customize the node appeareance.
+Optionally create a README, choose a license and customize the node appearance.
 
 ![Node type readme](./images/new_node_type/readme.png)
 
-:information_source: In the case that an existing node should be extended go to the inheritance tab and select the node type to inherit from.
+:information_source: In the case that an existing node should be extended, go to the inheritance tab and select the node type to inherit from.
 
 
 ### 3. Define Node Properties
 
-The original Qiskit node does not have a *property*, but for this tutorial we will define one. Open the `Property Definitions` tab.
+The original Qiskit node does not have a *property*, but for this tutorial, we will define one. Open the `Property Definitions` tab.
 
 Select `Custom key/value pairs` to create new properties. Then click on the `Add` button to create a new Property.
 
@@ -100,21 +100,21 @@ Leave the rest empty and hit `Save`.
 
 ### 4. Create the Lifecycle Interface
 
-A *node type* in TOSCA needs to define *interfaces* that contain the *methods* that can be called/executed on that node type.
+A *Node Type* in TOSCA needs to define *interfaces* that contain the *methods* that can be called/executed on that node type.
 
-First open the `interfaces` tab.
+First, open the `interfaces` tab.
 
-Click on the `Generate Lifecycle Interface` to create a new lifecycle interface for this *node type*.
+Click on the `Generate Lifecycle Interface` to create a new lifecycle interface for this *Node Type*.
 
-:information_source: The lifecycle interface defines methods for, e.g., installing, configuring, and starting a node type.
+:information_source: The lifecycle interface defines methods for, e.g., installing, configuring, and starting a *Node Type*.
 
 ![Generate Lifecycle Interface](./images/new_node_type/interfaces/generate_interfaces.png)
 
-For our quiskit node we only need to install the dependency so we can delete all other methods of the lifecycle interface.
+For our Qiskit node, we only need to install the dependency so we can delete all other methods of the lifecycle interface.
 
 ![Delete unused operations](./images/new_node_type/interfaces/delete_operations.png)
 
-Click on the `install` method to define input parameters. Click on the `Add` button of the input parameters.
+Click on the `install` method to define input parameters. Then, click on the `Add` button of the input parameters.
 
 ![Add input parameters](./images/new_node_type/interfaces/add_input_parameters.png)
 
@@ -131,12 +131,12 @@ This makes the (optional) `qiskitVersion` property available to all implementati
 
 ![Save](./images/new_node_type/interfaces/save.png)
 
-:information_source: The properties can come from the same node or any node this node depends on in a topology (e.g., with a hostedOn edge). Therefore, it is good to choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
+:information_source: The properties can come from the same node, or any node this node depends on in a topology (e.g., with a hostedOn edge). Therefore, it is good to choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
 
 
 ### 5. Create the Connection Interface
 
-Nodes that can connect to other nodes, e.g., our qiskit node should be able to connect to the IBMQ cloud, an interface implementing that connection needs to be added as well.
+Nodes that can connect to other nodes, e.g. our Qiskit node should be able to connect to the IBMQ cloud, need an interface implementing that connection.
 Click on the `Add` button of interfaces to create a new one.
 
 ![Add interface](./images/new_node_type/interfaces/connectto/add_interface.png)
@@ -145,7 +145,7 @@ Click on the `Add` button of interfaces to create a new one.
 |:-------|:------|:---------------|
 | Name | `http://opentosca.org/interfaces/connectTo/ibmq` | |
 
-:information_source: The interface name can be freely chosen for this. Opentosca will execute **any** interface with a *connectsTo* method for a *connectsTo* node relation. This can be used to implement multiple different connections. However, it is a good practise to include the connection type in the interface name.
+:information_source: The interface name can be freely chosen for this. Opentosca will execute **any** interface with a *connectsTo* method for a *connectsTo* node relation. This can be used to implement multiple different connections. However, it is a good practice to include the connection type in the interface name.
 
 Select the created interface and add a new operation.
 
@@ -196,7 +196,7 @@ The new implementation opens automatically.
 
 ### 1. Add infos (optional)
 
-Go to the new implementation if it's not open already.
+Go to the new implementation if it is not open already.
 Here you can add a readme and license if you want.
 
 ![Implementation readme](./images/new_node_type/implementations/implementation_readme.png)
@@ -235,14 +235,14 @@ Upload the script [install.sh](./images/new_node_type/implementations/implementa
 
 sudo apt-get update -qq
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3-pip -qq
-	
+    
 pip3 install --upgrade pip
 pip install qiskit==${qiskitVersion}
 
 ```
 
-This script installs Pip, updates it and then installs Qiskit with the specified version.
-The version can be specified with the input parameter `qiskitVersion` of install interface and is available in the script as an environment variable.
+This script installs Pip, updates it, and then installs Qiskit with the specified version.
+The version can be specified with the input parameter `qiskitVersion` of the install interface and is available in the script as an environment variable.
 
 ### 4. Create ConnectsTo implementation
 
@@ -266,7 +266,7 @@ Upload the script [connectTo.sh](./images/new_node_type/implementations/implemen
 
 ![Connect-to upload](./images/new_node_type/implementations/implementation_artifacts/connect_to_upload.png)
 
-:information_source: Multiple connects tos with config updates: Restart things if needed; Write config to disc; PID files
+:information_source: Multiple connectTos with config updates: Restart things if needed; Write config to disc; PID files
 
 ### 5. Explanation of the ConnectTo script
 
@@ -292,7 +292,8 @@ This script writes the values of the input parameters of the `connectTo` interfa
 The Qiskit application can then read these values from the file.
 
 ## Example of a PythonScriptArtifact
-This script installs `deployment artifacts` and requirements of the `node type` QHAna-PluginRunner version latest-w2.
+So far we have implemented all methods as bash scripts. But Python scripts are supported as well.
+The following example script installs `deployment artifacts` and requirements of the `Node Type` QHAna-PluginRunner version latest-w2.
 
 ```python
 # !/usr/bin/env python
@@ -308,128 +309,128 @@ from subprocess import PIPE
 
 
 def argv_to_dict(argv):
-	return dict(arg.split('=', maxsplit=1) for arg in argv if '=' in arg)
+    return dict(arg.split('=', maxsplit=1) for arg in argv if '=' in arg)
 
 
 def printOutput(dict):
-	for key in dict:
-		print(str(key) + '=' + str(dict[key]))
+    for key in dict:
+        print(str(key) + '=' + str(dict[key]))
 
 
 def install_requirements(environ):
-	cmd = ['apt-get', 'update', '-qq']
-	print(cmd_join(cmd))
-	subprocess.run(cmd)
-	cmd = ['apt-get', 'install', 'git', '-qq']
-	print(cmd_join(cmd))
-	subprocess.run(cmd)
+    cmd = ['apt-get', 'update', '-qq']
+    print(cmd_join(cmd))
+    subprocess.run(cmd)
+    cmd = ['apt-get', 'install', 'git', '-qq']
+    print(cmd_join(cmd))
+    subprocess.run(cmd)
 
 
 def install_deployment_artifacts(environ):
-	das = (da.strip() for da in environ.get('DAs', '').split(';') if da.strip())
-	plugin_runner_found = False
-	for da in das:
-		print('DA:', da)
-		result = da.split(',', maxsplit=1)
-		da_path = Path('/') / environ.get('CSAR', '').strip('/') / result[1].lstrip('/')
-		if da_path.suffix == '.zip':
-			if result[0] == 'QHAna-PluginRunner_DA':
-				plugin_runner_found = True
-				print('install plugin runner DA', *result)
-				install_plugin_runner(da_path)
-			else:
-				print('install plugin DA', *result)
-				install_plugin(da_path)
-	if not plugin_runner_found:
-		print('ERROR: No plugin runner DA!!!')
+    das = (da.strip() for da in environ.get('DAs', '').split(';') if da.strip())
+    plugin_runner_found = False
+    for da in das:
+        print('DA:', da)
+        result = da.split(',', maxsplit=1)
+        da_path = Path('/') / environ.get('CSAR', '').strip('/') / result[1].lstrip('/')
+        if da_path.suffix == '.zip':
+            if result[0] == 'QHAna-PluginRunner_DA':
+                plugin_runner_found = True
+                print('install plugin runner DA', *result)
+                install_plugin_runner(da_path)
+            else:
+                print('install plugin DA', *result)
+                install_plugin(da_path)
+    if not plugin_runner_found:
+        print('ERROR: No plugin runner DA!!!')
 
 
 def extract_zip(source, target):
-	target.mkdir(parents=True, exist_ok=True)
-	with source.open(mode='rb') as zip_file:
-		ZipFile(zip_file).extractall(target)
+    target.mkdir(parents=True, exist_ok=True)
+    with source.open(mode='rb') as zip_file:
+        ZipFile(zip_file).extractall(target)
 
 
 def install_plugin_runner(zip_da):
-	if not zip_da.exists():
-		print('ERROR: DA not found at ', zip_da)
-		return
-	target = Path('src')
-	extract_zip(zip_da, target)
-	# TODO unpin versions if possible
-	cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'mysql-connector-python==8.0.26']
-	print(cmd_join(cmd))
-	subprocess.run(cmd)
-	for f in ['tasks.py', 'pyproject.toml', 'poetry.lock']:
-		copyfile(target / f, Path('.') / f)
-	cmd = ['python3', '-m', 'poetry', 'export', '--without-hashes']
-	requirments = subprocess.run(cmd, stdout=PIPE)
-	req_file = Path('requirements.txt')
-	with req_file.open(mode='w') as f:
-		f.write(f'{target.resolve()}\n')
-		f.write(requirments.stdout.decode())
-	cmd = ['python3', '-m', 'pip', 'install', '-r', str(req_file.resolve())]
-	print(cmd_join(cmd))
-	subprocess.run(cmd)
+    if not zip_da.exists():
+        print('ERROR: DA not found at ', zip_da)
+        return
+    target = Path('src')
+    extract_zip(zip_da, target)
+    # TODO unpin versions if possible
+    cmd = ['python3', '-m', 'pip', 'install', 'PyMySQL', 'poetry', 'mysql-connector-python==8.0.26']
+    print(cmd_join(cmd))
+    subprocess.run(cmd)
+    for f in ['tasks.py', 'pyproject.toml', 'poetry.lock']:
+        copyfile(target / f, Path('.') / f)
+    cmd = ['python3', '-m', 'poetry', 'export', '--without-hashes']
+    requirments = subprocess.run(cmd, stdout=PIPE)
+    req_file = Path('requirements.txt')
+    with req_file.open(mode='w') as f:
+        f.write(f'{target.resolve()}\n')
+        f.write(requirments.stdout.decode())
+    cmd = ['python3', '-m', 'pip', 'install', '-r', str(req_file.resolve())]
+    print(cmd_join(cmd))
+    subprocess.run(cmd)
 
 
 def install_plugin(zip_da):
-	if not zip_da.exists():
-		print('ERROR: DA not found at ', zip_da)
-		return
-	extract_zip(zip_da, Path('plugins'))
+    if not zip_da.exists():
+        print('ERROR: DA not found at ', zip_da)
+        return
+    extract_zip(zip_da, Path('plugins'))
 
 
 def post_install(environ):
-	extra_env = {
-		'FLASK_APP': 'qhana_plugin_runner',
-		'FLASK_ENV': 'production',
-		'PLUGIN_FOLDERS': 'plugins:git-plugins'
-	}
+    extra_env = {
+        'FLASK_APP': 'qhana_plugin_runner',
+        'FLASK_ENV': 'production',
+        'PLUGIN_FOLDERS': 'plugins:git-plugins'
+    }
 
-	cmd = ['python3', '-m', 'invoke', 'load-git-plugins']
-	print(cmd_join(cmd), 'env:', extra_env)
-	subprocess.run(cmd, env=ChainMap(extra_env, environ))
-	cmd = ['python3', '-m', 'flask', 'install']
-	print(cmd_join(cmd), 'env:', extra_env)
-	subprocess.run(cmd, env=ChainMap(extra_env, environ))
+    cmd = ['python3', '-m', 'invoke', 'load-git-plugins']
+    print(cmd_join(cmd), 'env:', extra_env)
+    subprocess.run(cmd, env=ChainMap(extra_env, environ))
+    cmd = ['python3', '-m', 'flask', 'install']
+    print(cmd_join(cmd), 'env:', extra_env)
+    subprocess.run(cmd, env=ChainMap(extra_env, environ))
 
 
 def main(argv):
-	print('pwd', Path('.').resolve())
-	print(argv)
-	env = ChainMap(argv_to_dict(argv), environ)
-	install_requirements(env)
-	install_deployment_artifacts(env)
-	post_install(env)
+    print('pwd', Path('.').resolve())
+    print(argv)
+    env = ChainMap(argv_to_dict(argv), environ)
+    install_requirements(env)
+    install_deployment_artifacts(env)
+    post_install(env)
 
 
 if __name__ == "__main__":
-	main(sys.argv[1:])
+    main(sys.argv[1:])
 ```
 
 ### Explanation
 
-`PythonScriptArtifacts` get the user input not as environment variables but as commandline arguments.
-The function `argv_to_dict` converts the commandline arguments to a dictionary for easy access.
-The `ChainMap` class is used to merge multiple dictionary i.e. to merge the commandline arguments with the environment variables.
+`PythonScriptArtifacts` get the user input not as environment variables but as command-line arguments.
+The function `argv_to_dict` converts the command-line arguments to a dictionary for easy access.
+The `ChainMap` class is used to merge multiple dictionaries, i.e., to merge the command-line arguments with the environment variables.
 `install_requirements` installs git.
-The file names of the `deployment artifacts` are passed as environment variables to the script under the key `DAs` and the path to the unzipped `CSAR` folder can be found under the key `CSAR`.
+The file names of the `deployment artifacts` are passed as environment variables to the script under the key `DAs`, and the path to the unzipped `CSAR` folder can be found under the key `CSAR`.
 The function `install_deployment_artifacts` calculates the paths to the `deployment artifacts`,
-checks the type and calls the right install functions.
+checks the type, and calls the right install functions.
 `install_plugin_runner` unpacks the passed `deployment artifact` and installs required Python packages, `install_plugin` unpacks the passed `deployment artifact` into the plugins folder.
-At the end, `post_install` executes commands to configure the application and install more dependencies.
+In the end, `post_install` executes commands to configure the application and install more dependencies.
 
 
 ## Deployment Artifacts
 
-`Deployment artifacts` implement the business logic of an application e.g. the jar file for a Tomcat web server.
-If you want to create a node type that has e.g. a jar file as deployment artifact, you need to also create an interface with an implementation artifact that can execute this file.
+`Deployment artifacts` implement the business logic of an application, e.g., the jar file for a Tomcat web server.
+If you want to create a node type that has, e.g., a jar file as a deployment artifact, you need to create an interface with an implementation artifact that can execute this file.
 
 **Example with a jar file as deployment artifact**
-- create a `node type`
-- create an `interface` with a `start operation` for this `node type`
-- create a `node type implementation` for this `node type`
+- create a `Node Type`
+- create an `interface` with a `start operation` for this `Node Type`
+- create a `node type implementation` for this `Node Type`
 - add a `deployment artifact` to the `node type implementation`
 ![deployment artifact](./images/new_node_type/deployment%20artifacts/jar_artifact.png)
 - upload the `jar file` to the `deployment artifact`
@@ -453,8 +454,8 @@ sleep 5
 ## Tips and tricks
 
 **Access input parameters of source and target nodes:**
-In an `implementation artifact` of a `connectTo` interface you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node respectively.
-This helps in cases where the source and target node have an input parameter with the same name.
+In an `implementation artifact` of a `connectTo` interface, you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target node, respectively.
+This helps in cases where the source and target node have a property with the same name.
 
 **Ways to debug implementations:**
 - Enter the container and execute the implementation manually
