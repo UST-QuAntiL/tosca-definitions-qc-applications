@@ -27,10 +27,10 @@
                 </Properties>
             </NodeTemplate>
             <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Python" minInstances="1" maxInstances="1" type="otntyIgeneral:Python_3-w1" id="Python_3-w1_0" winery:x="288" winery:y="381"/>
-            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-PluginRunner_latest-w1" id="QHAna-PluginRunner_latest-w1_0" winery:x="764" winery:y="218">
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="QHAna-PluginRunner" minInstances="1" maxInstances="1" type="ntyIgeneral:QHAna-PluginRunner_latest-w2" id="QHAna-PluginRunner_latest-w2_0" winery:x="764" winery:y="218">
                 <Properties>
                     <Properties xmlns="http://www.example.org">
-                        <Port>get_input: Port</Port>
+                        <GunicornAppPort>get_input: GunicornAppPort</GunicornAppPort>
                         <AppModule>qhana_plugin_runner:create_app()</AppModule>
                         <MaxWorkers>4</MaxWorkers>
                         <MinWorkers>1</MinWorkers>
@@ -47,7 +47,7 @@
                 <TargetElement ref="OpenStack_15-Train-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1">
-                <SourceElement ref="QHAna-PluginRunner_latest-w1_0"/>
+                <SourceElement ref="QHAna-PluginRunner_latest-w2_0"/>
                 <TargetElement ref="Gunicorn_20.1.0-w1_0"/>
             </RelationshipTemplate>
             <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_2">
