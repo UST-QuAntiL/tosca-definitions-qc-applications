@@ -65,8 +65,27 @@ services:
 To start only the winery container, you can use the command `docker-compose up winery`.
 
 :information_source: Reusable `Node Types` that, e.g., can be used by multiple applications, should be placed in a common repository. On the other hand, application-specific `Node Types` should be placed in the application-specific repositories.
-
-<!-- TODO: add idea of the multi repository setup and how it works -->
+The application-specific repository can then import the common repositories.
+Therefore, the user has to create a `repositories.json` file in the root directory of the repository.
+In this file all repositories to be imported are listed with their name, repository url and branch:
+```json
+[ {
+  "name" : "Normative Types",
+  "url" : "https://github.com/OpenTOSCA/tosca-normative-types",
+  "branch" : "main"
+},
+{
+  "name" : "Common Types",
+  "url" : "https://github.com/OpenTOSCA/tosca-definitions-common",
+  "branch" : "main"
+},
+{
+  "name" : "QuAntiL Types",
+  "url" : "https://github.com/UST-QuAntiL/tosca-definitions-quantil",
+  "branch" : "main"
+} ] 
+```
+The content of the current repository is in the workspace folder.
 
 
 ### 2. Create a new Node Type
