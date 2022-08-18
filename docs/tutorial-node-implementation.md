@@ -13,7 +13,7 @@ The tutorial will lead you through recreating a `Node Type` from the [Tutorial: 
 
 Before you start with this tutorial, clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the relevant sections of the README once (e.g. the first two sections, tips and tricks, and troubleshooting).
 
-To avoid losing your progress after terminating the Docker Compose setup, use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
+To avoid losing your progress after terminating the Docker Compose setup, [use a local repository](https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository).
 In this tutorial, you only need the `winery` container, but you can start the whole ecosystem as well.
 
 **Table of contents**
@@ -30,7 +30,7 @@ In this tutorial, you only need the `winery` container, but you can start the wh
 1. [Add infos (optional)](#1-add-infos-optional)
 2. [Create Lifecycle implementation](#2-create-lifecycle-implementation)
 3. [Explanation of the install script](#3-explanation-of-the-install-script)
-4. [Create ConnectsTo implementation](#4-create-connectsto-implementation)
+4. [Create ConnectTo implementation](#4-create-connectto-implementation)
 5. [Explanation of the ConnectTo script](#5-explanation-of-the-connectto-script)
 
 [Example of a PythonScriptArtifact](#example-of-a-pythonscriptartifact)
@@ -97,16 +97,18 @@ Click on the `Add new` button on the right.
 
 Enter the following values into the dialog and click on `Add`:
 
-| Field      | Value                                     | Explanation |
-|:-----------|:------------------------------------------|:------------|
-| Name       | CustomQiskit                              |             |
-| Versioning | Enabled                                   | (optional)  |
-| Version    | latest                                    | (optional)  |
-| Namespace  | `https://ust-quantil.github.io/nodetypes` |             |
+| Field      | Value                                     | Explanation               |
+|:-----------|:------------------------------------------|:--------------------------|
+| Name       | CustomQiskit                              |                           |
+| Versioning | Enabled                                   | (optional)                |
+| Version    | latest                                    | (optional)                |
+| Namespace  | `https://ust-quantil.github.io/nodetypes` | can be chosen arbitrarily |
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
-Optionally create a README, choose a license and customize the appearance.
+<!-- TODO: explain namespaces and template -->
+
+Optionally you can create a README with markdown support, choose a license and customize the appearance.
 
 ![Node type readme](./images/new_node_type/readme.png)
 
@@ -132,9 +134,9 @@ Leave the rest empty and hit `Save`.
 
 ### 4. Create the Lifecycle Interface
 
-A `Node Type` in TOSCA needs to define `interfaces` that contain the `operations` that can be called/executed on that `Node Type`.
+A `Node Type` in TOSCA needs to define `Interfaces` that contain the `Operations` that can be called/executed on that `Node Type`.
 
-First, open the `interfaces` tab.
+First, open the `Interfaces` tab.
 
 Click on the `Generate Lifecycle Interface` to create a new lifecycle interface for this `Node Type`.
 
@@ -152,7 +154,7 @@ Click on the `install` operation to define input parameters. Then, click on the 
 
 | Field    | Value           | Explanation                         |
 |:---------|:----------------|:------------------------------------|
-| Name     | `qiskitVersion` |                                     |
+| Name     | `qiskitVersion` | WARNING: this is case-sensitive     |
 | Type     | `xsd:string`    | data type                           |
 | Required | `False`         | if the user needs to supply a value |
 
@@ -160,10 +162,11 @@ Click on the `install` operation to define input parameters. Then, click on the 
 
 Hit `Add` to add the input parameter and `Save` to save the changes you made.
 This makes the (optional) `qiskitVersion` property available to all implementations of this interface operation.
+**Be careful that the name must match exactly and is case-sensitive.**
 
 ![Save](./images/new_node_type/interfaces/save.png)
 
-:information_source: The properties can come from the same `Node Type`, or any `Node Type` this `Node Type` depends on in a `Topology Template` (e.g., with a hostedOn edge). Therefore, it is good to choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
+:information_source: The properties can come from the same `Node Type`, or any `Node Type` this `Node Type` depends on in a `Topology Template` (e.g., with a hostedOn relation). Therefore, choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
 
 
 ### 5. Create the Connection Interface
@@ -177,7 +180,7 @@ Click on the `Add` button of interfaces to create a new one.
 |:------|:-------------------------------------------------|:------------|
 | Name  | `http://opentosca.org/interfaces/connectTo/ibmq` |             |
 
-:information_source: The interface name can be freely chosen for this. OpenTOSCA will execute **any** interface with a `connectsTo` operation for a `connectsTo` node relation. This can be used to implement multiple different connections. However, it is a good practice to include the connection type in the interface name.
+:information_source: The interface name can be freely chosen for this. OpenTOSCA will execute **any** interface with a `connectTo` operation for a `connectTo` node relation. This can be used to implement multiple different connections. However, it is a good practice to include the connection type in the interface name.
 
 Select the created interface and add a new operation.
 
@@ -200,7 +203,7 @@ Add the following input parameters:
 
 ![Add input parameters](./images/new_node_type/interfaces/connectto/add_input_parameters.png)
 
-:information_source: Interface operations will only be called if their properties can be satisfied/filled in => use this to differentiate between different connectsTo implementations
+:information_source: Interface operations will only be called if their properties can be satisfied/filled in => use this to differentiate between different connectTo implementations
 
 Save the changes you made.
 
@@ -276,7 +279,7 @@ pip install qiskit==${qiskitVersion}
 This script installs Pip, updates it, and then installs Qiskit with the specified version.
 The version can be specified with the input parameter `qiskitVersion` of the install interface and is available in the script as an environment variable.
 
-### 4. Create ConnectsTo implementation
+### 4. Create ConnectTo implementation
 
 Add the `connectTo` artifact.
 Enter the following values:
