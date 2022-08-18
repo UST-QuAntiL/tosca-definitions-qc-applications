@@ -13,7 +13,7 @@ The tutorial will lead you through recreating a `Node Type` from the [Tutorial: 
 
 Before you start with this tutorial, clone the <https://github.com/OpenTOSCA/opentosca-docker> repository and read through the relevant sections of the README once (e.g. the first two sections, tips and tricks, and troubleshooting).
 
-To avoid loosing your progress after terminating the Docker Compose setup, use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
+To avoid losing your progress after terminating the Docker Compose setup, use a local repository (see <https://github.com/OpenTOSCA/opentosca-docker/blob/main/docs/advanced-how-to.md#how-to-use-an-existing-local-winery-repository>).
 In this tutorial, you only need the `winery` container, but you can start the whole ecosystem as well.
 
 **Table of contents**
@@ -66,8 +66,8 @@ To start only the winery container, you can use the command `docker-compose up w
 
 :information_source: Reusable `Node Types` that, e.g., can be used by multiple applications, should be placed in a common repository. On the other hand, application-specific `Node Types` should be placed in the application-specific repositories.
 The application-specific repository can then import the common repositories.
-Therefore, the user has to create a `repositories.json` file in the root directory of the repository.
-In this file all repositories to be imported are listed with their name, repository url and branch:
+Therefore, the user must create a `repositories.json` file in the repository's root directory.
+In this file, all repositories to be imported are listed with their name, repository URL, and branch:
 ```json
 [ {
   "name" : "Normative Types",
