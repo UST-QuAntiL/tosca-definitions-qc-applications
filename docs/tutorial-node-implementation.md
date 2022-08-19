@@ -154,7 +154,7 @@ Click on the `install` operation to define input parameters. Then, click on the 
 
 | Field    | Value           | Explanation                         |
 |:---------|:----------------|:------------------------------------|
-| Name     | `qiskitVersion` | WARNING: this is case-sensitive     |
+| Name     | `qiskitVersion` | WARNING: this is case-sensitive and must be the same as the property that we defined earlier |
 | Type     | `xsd:string`    | data type                           |
 | Required | `False`         | if the user needs to supply a value |
 
@@ -180,7 +180,7 @@ Click on the `Add` button of interfaces to create a new one.
 |:------|:-------------------------------------------------|:------------|
 | Name  | `http://opentosca.org/interfaces/connectTo/ibmq` |             |
 
-:information_source: The interface name can be freely chosen for this. OpenTOSCA will execute **any** interface with a `connectTo` operation for a `connectTo` node relation. This can be used to implement multiple different connections. However, it is a good practice to include the connection type in the interface name.
+:information_source: The interface name can be freely chosen for this. OpenTOSCA will execute **any** interface with a `connectTo` operation for a `connectTo` node relation. This can be used to implement multiple different connections. However, it is a best practice to include the connection type in the interface name.
 
 Select the created interface and add a new operation.
 
@@ -215,10 +215,10 @@ Open the `implementations` tab and click on `Add` to create a new implementation
 
 ![Implementations](./images/new_node_type/implementations/implementations.png)
 
-| Field             | Value                                                   | Required |
-|:------------------|:--------------------------------------------------------|:---------|
-| Enable Versioning | True                                                    | NO       |
-| Namespace         | `https://ust-quantil.github.io/nodetypeimplementations` | YES      |
+| Field             | Value                                                   | Required                       |
+|:------------------|:--------------------------------------------------------|:-------------------------------|
+| Enable Versioning | True                                                    | NO                             |
+| Namespace         | `https://ust-quantil.github.io/nodetypeimplementations` | YES, will be set automatically |
 
 Use the default values for the rest of the fields.
 
@@ -231,7 +231,8 @@ The new implementation opens automatically.
 
 ### 1. Add infos (optional)
 
-Go to the new implementation if it is not open already.
+The new implementation opens automatically, but you can also navigate there through the `Other Elements` tab -> `Node Type Implementations` -> `CustomQiskit-Implementation`.
+
 Here you can add a readme and license if you want.
 
 ![Implementation readme](./images/new_node_type/implementations/implementation_readme.png)
@@ -452,28 +453,29 @@ The `ChainMap` class is used to merge multiple dictionaries, i.e., to merge the 
 `install_requirements` installs git.
 The file names of the `Deployment Artifacts` are passed as environment variables to the script under the key `DAs`, and the path to the unzipped `CSAR` folder can be found under the key `CSAR`.
 The function `install_deployment_artifacts` calculates the paths to the `Deployment Artifacts`,
-checks the type, and calls the right install functions.
+checks the type, and calls the correct install functions.
 `install_plugin_runner` unpacks the passed `Deployment Artifact` and installs required Python packages, `install_plugin` unpacks the passed `Deployment Artifact` into the plugins folder.
 In the end, `post_install` executes commands to configure the application and install more dependencies.
 
 
 ## Deployment Artifacts
 
-`Deployment Artifacts` implement the business logic of an application, e.g., the jar file for a Tomcat web server.
-If you want to create a `Node Type` that has, e.g., a jar file as a deployment artifact, you need to create an interface with an implementation artifact that can execute this file.
+`Deployment Artifacts` implement the business logic of an application, e.g., the JAR-file for a Tomcat web server.
+If you want to create a `Node Type` that has, e.g., a JAR-file as a `Deployment Artifact`, you need to create an interface with an implementation artifact that can execute this file.
+An environment variable called `DAs` is passed to `operations` and contains a list of all `Deployment Artifacts` of this `Node Type` and `Node Template`.
 
-**Example with a jar file as deployment artifact**
+**Example with a JAR-file as deployment artifact**
 - create a `Node Type`
 - create an `Interface` with a `start operation` for this `Node Type`
 - create a `Node Type Implementation` for this `Node Type`
 - add a `Deployment Artifact` to the `Node Type Implementation`
 ![deployment artifact](./images/new_node_type/deployment%20artifacts/jar_artifact.png)
-- upload the `jar file` to the `Deployment Artifact`
+- upload the `JAR-file` to the `Deployment Artifact`
 - add a `ScriptArtifact` as `Implementation Artifact` for the `start operation` to the `Node Type Implementation`
 ![implementation artifact](./images/new_node_type/deployment%20artifacts/start_artifact.png)
-- upload a `script` to the `ScriptArtifact` that executes the `jar file`
+- upload a `script` to the `ScriptArtifact` that executes the `JAR-file`
 
-Example script to execute a `jar file`:
+Example script to execute a `JAR-file`:
 ```bash
 #!/bin/bash
 
@@ -486,12 +488,53 @@ echo "Done"
 sleep 5
 ```
 
+**Example script that installs Deployment Artifacts**
+```bash
+#!/bin/bash
+
+# $DAs contains a semicolon separated list of the Deployment Artifacts
+IFS=';' read -ra NAMES <<< "$DAs";
+# NAMES is now an array where every element is a string that corresponds to a Deployment Artifact
+
+for i in "${NAMES[@]}"; do
+  echo "KeyValue-Pair: "
+  echo $i
+
+  # splits the string at the colon
+  IFS=',' read -ra entry <<< "$i";
+    echo "Key: "
+    echo ${entry[0]}  # first value contains the name of the Deployment Artifact
+    echo "Value: "
+    echo ${entry[1]}  # second value contains the file name of the Deployment Artifact
+
+  # find the executable jar file
+  if [[ "${entry[1]}" == *.jar ]];
+  then
+    # copy the executable to /var/www/
+    sudo mkdir -p /var/www/java/${AppName}
+    # $CSAR contains the path to the unzipped CSAR folder
+    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/${AppName}.jar
+  # find the application.properties file
+  elif [[ "${entry[1]}" == *.properties ]];
+  then
+    # copy the config file also to /var/www/
+    sudo mkdir -p /var/www/java/${AppName}
+    # $CSAR contains the path to the unzipped CSAR folder
+    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/application.properties
+  fi
+done
+```
+
+This script copies a JAR-file and a .properties file to the correct folder.
+Both files are Deployment Artifacts and their names and files names are passed to the scripts in the environment variable `DAs`.
+The content of `DAs` has the following format: `<DA 1 name>,<DA 1 file name>;<DA 2 name>,<DA 2 file name>;...`
+
 ## Tips and tricks
 
-**Access input parameters of source and target Node Types:**
-In an `Implementation Artifact` of a `connectTo` interface, you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target `Node Type`, respectively.
-This helps in cases where the source and target `Node Type` have a property with the same name.
+**Access input parameters of source and target Node Template:**
+In an `Implementation Artifact` of a `connectTo` interface, you can prefix environment variables with `SOURCE_` or `TARGET_` to specify whether you want the input parameter of the source or target `Node Template`, respectively.
+This helps in cases where the source and target `Node Template` have a property with the same name.
 
 **Ways to debug implementations:**
-- Enter the container and execute the implementation manually
-- Write debug information (logs) to a file, then copy that file from the container to your disk
+- Enter the Docker Container or VM and execute the implementation manually
+- Write debug information (logs) to a file, then copy that file from the Docker Container or VM to your disk
