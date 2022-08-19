@@ -97,16 +97,21 @@ Click on the `Add new` button on the right.
 
 Enter the following values into the dialog and click on `Add`:
 
-| Field      | Value                                     | Explanation               |
-|:-----------|:------------------------------------------|:--------------------------|
-| Name       | CustomQiskit                              |                           |
-| Versioning | Enabled                                   | (optional)                |
-| Version    | latest                                    | (optional)                |
-| Namespace  | `https://ust-quantil.github.io/nodetypes` | can be chosen arbitrarily |
+| Field        | Value                           | Explanation                |
+|:-------------|:--------------------------------|:---------------------------|
+| Name         | CustomQiskit                    |                            |
+| Versioning   | Enabled                         | (optional)                 |
+| Version      | latest                          | (optional)                 |
+| Namespace    |                                 | is generated automatically |
+| Template URI | `https://ust-quantil.github.io` |                            |
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
-<!-- TODO: explain namespaces and template -->
+<!-- TODO: explain namespaces -->
+
+**Namespace Templates:**
+In this example we don't set the namespace manually but use the template option to specify only the start of the namespace URI.
+When you click on `Apply` the namespace is automatically generated.
 
 Optionally you can create a README with markdown support, choose a license and customize the appearance.
 
@@ -215,10 +220,11 @@ Open the `implementations` tab and click on `Add` to create a new implementation
 
 ![Implementations](./images/new_node_type/implementations/implementations.png)
 
-| Field             | Value                                                   | Required                       |
-|:------------------|:--------------------------------------------------------|:-------------------------------|
-| Enable Versioning | True                                                    | NO                             |
-| Namespace         | `https://ust-quantil.github.io/nodetypeimplementations` | YES, will be set automatically |
+| Field             | Value                           | Required                   |
+|:------------------|:--------------------------------|:---------------------------|
+| Enable Versioning | True                            | No                         |
+| Namespace         |                                 | is generated automatically |
+| Template URI      | `https://ust-quantil.github.io` | Yes                        |
 
 Use the default values for the rest of the fields.
 
@@ -246,15 +252,16 @@ Add the `install` artifact.
 
 Enter the following values:
 
-| Field                      | Value                                           | Required |
-|:---------------------------|:------------------------------------------------|:---------|
-| Name                       | Qiskit_Install                                  | Yes      |
-| Interface Name             | http://opentosca.org/interfaces/lifecycle       | Yes      |
-| Operation Name             | install                                         | Yes      |
-| Artifact Template Creation | Create Artifact Template                        | Yes      |
-| Enable Versioning          | True                                            | No       |
-| Type                       | ScriptArtifact                                  | Yes      |
-| Namespace                  | https://ust-quantil.github.io/artifacttemplates | Yes      |
+| Field                      | Value                                       | Required                   |
+|:---------------------------|:--------------------------------------------|:---------------------------|
+| Name                       | Qiskit_Install                              | Yes                        |
+| Interface Name             | `http://opentosca.org/interfaces/lifecycle` | Yes                        |
+| Operation Name             | install                                     | Yes                        |
+| Artifact Template Creation | Create Artifact Template                    | Yes                        |
+| Enable Versioning          | True                                        | No                         |
+| Type                       | ScriptArtifact                              | Yes                        |
+| Namespace                  |                                             | is generated automatically |
+| Template URI               | `https://ust-quantil.github.io`             | Yes                        |
 
 ![Install artifact](./images/new_node_type/implementations/implementation_artifacts/install_1.png)
 
@@ -285,15 +292,16 @@ The version can be specified with the input parameter `qiskitVersion` of the ins
 Add the `connectTo` artifact.
 Enter the following values:
 
-| Field                      | Value                                           | Required |
-|:---------------------------|:------------------------------------------------|:---------|
-| Name                       | Qiskit_ConnectTo                                | Yes      |
-| Interface Name             | http://opentosca.org/interfaces/connectTo/ibmq  | Yes      |
-| Operation Name             | connectTo                                       | Yes      |
-| Artifact Template Creation | Create Artifact Template                        | Yes      |
-| Enable Versioning          | True                                            | No       |
-| Type                       | ScriptArtifact                                  | Yes      |
-| Namespace                  | https://ust-quantil.github.io/artifacttemplates | Yes      |
+| Field                      | Value                                            | Required                   |
+|:---------------------------|:-------------------------------------------------|:---------------------------|
+| Name                       | Qiskit_ConnectTo                                 | Yes                        |
+| Interface Name             | `http://opentosca.org/interfaces/connectTo/ibmq` | Yes                        |
+| Operation Name             | connectTo                                        | Yes                        |
+| Artifact Template Creation | Create Artifact Template                         | Yes                        |
+| Enable Versioning          | True                                             | No                         |
+| Type                       | ScriptArtifact                                   | Yes                        |
+| Namespace                  |                                                  | is automatically generated |
+| Template URI               | `https://ust-quantil.github.io`                  | Yes                        |
 
 ![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_1.png)
 ![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_2.png)
