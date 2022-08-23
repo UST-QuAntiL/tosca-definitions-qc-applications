@@ -107,7 +107,7 @@ Enter the following values into the dialog and click on `Add`:
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
-<!-- TODO: explain namespaces -->
+:information_source: Namespaces are used in Tosca to group, organize, and uniquely identify entities. Like the underlying XML format, Tosca uses URLs as the identifier for namespaces. For example, a company can use the namespace `https://my.company.example.org/tosca/applications` for all their applications. Then, Winery automatically creates and organizes sub-namespaces for `Node Types`, `Node Type Implementations`, `Artifact Templates` ... For instance, all `Node Types` are in the namespace `https://my.company.example.org/tosca/applications/nodetypes`.
 
 **Namespace Templates:**
 In this example we don't set the namespace manually but use the template option to specify only the start of the namespace URI.
