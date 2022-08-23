@@ -97,13 +97,13 @@ Click on the `Add new` button on the right.
 
 Enter the following values into the dialog and click on `Add`:
 
-| Field        | Value                           | Explanation                |
-|:-------------|:--------------------------------|:---------------------------|
-| Name         | CustomQiskit                    |                            |
-| Versioning   | Enabled                         | (optional)                 |
-| Version      | latest                          | (optional)                 |
-| Namespace    |                                 | is generated automatically |
-| Template URI | `https://ust-quantil.github.io` |                            |
+| Field        | Value                                     | Explanation                |
+|:-------------|:------------------------------------------|:---------------------------|
+| Name         | CustomQiskit                              |                            |
+| Versioning   | Enabled                                   | (optional)                 |
+| Version      | latest                                    | (optional)                 |
+| Namespace    | `https://ust-quantil.github.io/nodetypes` | is generated automatically |
+| Template URI | `https://ust-quantil.github.io`           |                            |
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
@@ -133,7 +133,7 @@ Select `Custom key/value pairs` to create new properties. Then click on the `Add
 | Name  | `qiskitVersion` |             |
 | Type  | `xsd:string`    | data type   |
 
-Leave the rest empty and hit `Save`.
+Leave the rest empty and hit `Save`. 
 
 ![Node type new property dialog](./images/new_node_type/new_property_dialog.png)
 
@@ -166,10 +166,13 @@ Click on the `install` operation to define input parameters. Then, click on the 
 ![Add input parameters dialog](./images/new_node_type/interfaces/add_input_parameters_dialog.png)
 
 Hit `Add` to add the input parameter and `Save` to save the changes you made.
+
 This makes the (optional) `qiskitVersion` property available to all implementations of this interface operation.
 **Be careful that the name must match exactly and is case-sensitive.**
 
 ![Save](./images/new_node_type/interfaces/save.png)
+
+:bangbang: **You need to press the Save button, otherwise your changes will be lost.** 
 
 :information_source: The properties can come from the same `Node Type`, or any `Node Type` this `Node Type` depends on in a `Topology Template` (e.g., with a hostedOn relation). Therefore, choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
 
@@ -208,11 +211,16 @@ Add the following input parameters:
 
 ![Add input parameters](./images/new_node_type/interfaces/connectto/add_input_parameters.png)
 
-:information_source: Interface operations will only be called if their properties can be satisfied/filled in => use this to differentiate between different connectTo implementations
+:information_source: Each `Implementation Artifact` for a given operation (e.g. `connectTo`) will be executed, but only if it defines all input properties. 
+You can use this behavior to control which implementation gets executed.
+
+:warning: If you want only one e.g. `connectTo` implementation to be executed, the `Operation` needs a unique set of `Input Properties` that also need to be defined in the `Implementation Artifact`.
 
 Save the changes you made.
 
 ![Save](./images/new_node_type/interfaces/connectto/save.png)
+
+:bangbang: **You need to press the Save button, otherwise your changes will be lost.** 
 
 ### 6. Add a Node Type Implementation
 
@@ -220,11 +228,11 @@ Open the `implementations` tab and click on `Add` to create a new implementation
 
 ![Implementations](./images/new_node_type/implementations/implementations.png)
 
-| Field             | Value                           | Required                   |
-|:------------------|:--------------------------------|:---------------------------|
-| Enable Versioning | True                            | No                         |
-| Namespace         |                                 | is generated automatically |
-| Template URI      | `https://ust-quantil.github.io` | Yes                        |
+| Field             | Value                                                   | Required                   |
+|:------------------|:--------------------------------------------------------|:---------------------------|
+| Enable Versioning | True                                                    | No                         |
+| Namespace         | `https://ust-quantil.github.io/nodetypeimplementations` | is generated automatically |
+| Template URI      | `https://ust-quantil.github.io`                         | Yes                        |
 
 Use the default values for the rest of the fields.
 
@@ -252,16 +260,16 @@ Add the `install` artifact.
 
 Enter the following values:
 
-| Field                      | Value                                       | Required                   |
-|:---------------------------|:--------------------------------------------|:---------------------------|
-| Name                       | Qiskit_Install                              | Yes                        |
-| Interface Name             | `http://opentosca.org/interfaces/lifecycle` | Yes                        |
-| Operation Name             | install                                     | Yes                        |
-| Artifact Template Creation | Create Artifact Template                    | Yes                        |
-| Enable Versioning          | True                                        | No                         |
-| Type                       | ScriptArtifact                              | Yes                        |
-| Namespace                  |                                             | is generated automatically |
-| Template URI               | `https://ust-quantil.github.io`             | Yes                        |
+| Field                      | Value                                             | Required                   |
+|:---------------------------|:--------------------------------------------------|:---------------------------|
+| Name                       | Qiskit_Install                                    | Yes                        |
+| Interface Name             | `http://opentosca.org/interfaces/lifecycle`       | Yes                        |
+| Operation Name             | install                                           | Yes                        |
+| Artifact Template Creation | Create Artifact Template                          | Yes                        |
+| Enable Versioning          | True                                              | No                         |
+| Type                       | ScriptArtifact                                    | Yes                        |
+| Namespace                  | `https://ust-quantil.github.io/artifacttemplates` | is generated automatically |
+| Template URI               | `https://ust-quantil.github.io`                   | Yes                        |
 
 ![Install artifact](./images/new_node_type/implementations/implementation_artifacts/install_1.png)
 
@@ -292,16 +300,16 @@ The version can be specified with the input parameter `qiskitVersion` of the ins
 Add the `connectTo` artifact.
 Enter the following values:
 
-| Field                      | Value                                            | Required                   |
-|:---------------------------|:-------------------------------------------------|:---------------------------|
-| Name                       | Qiskit_ConnectTo                                 | Yes                        |
-| Interface Name             | `http://opentosca.org/interfaces/connectTo/ibmq` | Yes                        |
-| Operation Name             | connectTo                                        | Yes                        |
-| Artifact Template Creation | Create Artifact Template                         | Yes                        |
-| Enable Versioning          | True                                             | No                         |
-| Type                       | ScriptArtifact                                   | Yes                        |
-| Namespace                  |                                                  | is automatically generated |
-| Template URI               | `https://ust-quantil.github.io`                  | Yes                        |
+| Field                      | Value                                             | Required                   |
+|:---------------------------|:--------------------------------------------------|:---------------------------|
+| Name                       | Qiskit_ConnectTo                                  | Yes                        |
+| Interface Name             | `http://opentosca.org/interfaces/connectTo/ibmq`  | Yes                        |
+| Operation Name             | connectTo                                         | Yes                        |
+| Artifact Template Creation | Create Artifact Template                          | Yes                        |
+| Enable Versioning          | True                                              | No                         |
+| Type                       | ScriptArtifact                                    | Yes                        |
+| Namespace                  | `https://ust-quantil.github.io/artifacttemplates` | is automatically generated |
+| Template URI               | `https://ust-quantil.github.io`                   | Yes                        |
 
 ![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_1.png)
 ![Connect-to artifact](./images/new_node_type/implementations/implementation_artifacts/connect_to_2.png)
@@ -310,7 +318,10 @@ Upload the script [connectTo.sh](./images/new_node_type/implementations/implemen
 
 ![Connect-to upload](./images/new_node_type/implementations/implementation_artifacts/connect_to_upload.png)
 
-:information_source: Multiple connectTos with config updates: Restart things if needed; Write config to disc; PID files
+:information_source: If you have multiple `connectTos` that need to update a configuration (file), you need to be careful, because the execution order is arbitrary.
+Each `connectTo` should read the config file, update it and save it again to a file.
+You may want to restart processes, so that they use the new config.
+To do this you can write the process IDs to a file and let the `connectTo` implementations read the process IDs from that file and restart the processes.
 
 ### 5. Explanation of the ConnectTo script
 
