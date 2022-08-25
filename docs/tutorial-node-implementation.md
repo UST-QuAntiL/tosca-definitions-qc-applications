@@ -107,7 +107,7 @@ Enter the following values into the dialog and click on `Add`:
 
 ![New node type dialog](./images/new_node_type/new_dialog.png)
 
-:information_source: Namespaces are used in Tosca to group, organize, and uniquely identify entities. Like the underlying XML format, Tosca uses URLs as the identifier for namespaces. For example, a company can use the namespace `https://my.company.example.org/tosca/applications` for all their applications. Then, Winery automatically creates and organizes sub-namespaces for `Node Types`, `Node Type Implementations`, `Artifact Templates` ... For instance, all `Node Types` are in the namespace `https://my.company.example.org/tosca/applications/nodetypes`.
+:information_source: Namespaces are used in TOSCA to group, organize, and uniquely identify entities. Like the underlying XML format, Tosca uses URLs as the identifier for namespaces. For example, a company can use the namespace `https://my.company.example.org/tosca/applications` for all their applications. Then, Winery automatically creates and organizes sub-namespaces for `Node Types`, `Node Type Implementations`, `Artifact Templates` ... For instance, all `Node Types` are in the namespace `https://my.company.example.org/tosca/applications/nodetypes`.
 
 **Namespace Templates:**
 In this example we don't set the namespace manually but use the template option to specify only the start of the namespace URI.
@@ -174,7 +174,9 @@ This makes the (optional) `qiskitVersion` property available to all implementati
 
 :bangbang: **You need to press the Save button, otherwise your changes will be lost.** 
 
-:information_source: The properties can come from the same `Node Type`, or any `Node Type` this `Node Type` depends on in a `Topology Template` (e.g., with a hostedOn relation). Therefore, choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
+:information_source: The input parameters that the `Operation` receives can come from the same `Node Type`, or any `Node Type` this `Node Type` depends on in a `Topology Template` (e.g., with a hostedOn relation). Therefore, choose unique names for properties that should not be used generically (i.e. `qiskitVersion` instead of `version`).
+
+:information_source: The values `VMIP`, `ContainerIP` and `IP` are handled as the same property. Hence, if you use `IP` as an `Input Paramater` in an operation you will also get the correct value if a dependent component defines `VMIP` or `ContainerIP`.
 
 
 ### 5. Create the Connection Interface
@@ -211,8 +213,9 @@ Add the following input parameters:
 
 ![Add input parameters](./images/new_node_type/interfaces/connectto/add_input_parameters.png)
 
-:information_source: Each `Implementation Artifact` for a given operation (e.g. `connectTo`) will be executed, but only if it defines all input properties. 
-You can use this behavior to control which implementation gets executed.
+:information_source: Each `Operation` for which all required `Input Parameters` can be found in a `Topology Template` will be executed.
+This means that if you have e.g. two `connectTo` operations with the same `Input Parameters`, both will be executed for each `connectTo` `Relation`.
+You can use this behavior also to control which implementation gets executed.
 
 :warning: If you want only one e.g. `connectTo` implementation to be executed, the `Operation` needs a unique set of `Input Properties` that also need to be defined in the `Implementation Artifact`.
 
@@ -346,6 +349,84 @@ Again, the values of the input parameters are available in environment variables
 This script writes the values of the input parameters of the `connectTo` interface to the file `qiskit_app/.env`.
 The Qiskit application can then read these values from the file.
 
+
+## Deployment Artifacts
+
+`Deployment Artifacts` implement the business logic of an application, e.g., the JAR-file for a Tomcat web server.
+If you want to create a `Node Type` that has, e.g., a JAR-file as a `Deployment Artifact`, you need to create an interface with an implementation artifact that can execute this file.
+An environment variable called `DAs` is passed to `operations` and contains a list of all `Deployment Artifacts` of this `Node Type` and `Node Template`.
+
+**Example with a JAR-file as `Deployment Artifact`**
+
+This example shows how you can create a `Node Type` with a JAR-file as `Deployment Artifact`.
+This is independent of the previous examples.
+The screenshots come from the QHAna-Backend `Node Type` that you can find in [this repository](https://github.com/UST-QuAntiL/tosca-definitions-qc-applications)
+
+- create a [new Node Type](#2-create-a-new-node-type)
+- create an [Interface](#4-create-the-lifecycle-interface) with a `start operation` for this `Node Type`
+- create a [Node Type Implementation](#6-add-a-node-type-implementation) for this `Node Type`
+- add a `Deployment Artifact` to the `Node Type Implementation`
+![deployment artifact](./images/new_node_type/deployment%20artifacts/jar_artifact.png)
+- upload the `JAR-file` to the `Deployment Artifact`
+- add a `ScriptArtifact` as [Implementation Artifact](#2-create-lifecycle-implementation) for the `start operation` to the `Node Type Implementation`
+![implementation artifact](./images/new_node_type/deployment%20artifacts/start_artifact.png)
+- upload a `script` to the `ScriptArtifact` that executes the `JAR-file`
+
+Example script to execute a `JAR-file`:
+```bash
+#!/bin/bash
+
+echo "Starting QHana-Backend"
+
+cd qhana_backend
+java -jar qhana_backend.jar
+echo "Done"
+
+sleep 5
+```
+
+**Example script that installs Deployment Artifacts**
+```bash
+#!/bin/bash
+
+# $DAs contains a semicolon separated list of the Deployment Artifacts
+IFS=';' read -ra NAMES <<< "$DAs";
+# NAMES is now an array where every element is a string that corresponds to a Deployment Artifact
+
+for i in "${NAMES[@]}"; do
+  echo "KeyValue-Pair: "
+  echo $i
+
+  # splits the string at the colon
+  IFS=',' read -ra entry <<< "$i";
+    echo "Key: "
+    echo ${entry[0]}  # first value contains the name of the Deployment Artifact
+    echo "Value: "
+    echo ${entry[1]}  # second value contains the file name of the Deployment Artifact
+
+  # find the executable jar file
+  if [[ "${entry[1]}" == *.jar ]];
+  then
+    # copy the executable to /var/www/
+    sudo mkdir -p /var/www/java/${AppName}
+    # $CSAR contains the path to the unzipped CSAR folder
+    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/${AppName}.jar
+  # find the application.properties file
+  elif [[ "${entry[1]}" == *.properties ]];
+  then
+    # copy the config file also to /var/www/
+    sudo mkdir -p /var/www/java/${AppName}
+    # $CSAR contains the path to the unzipped CSAR folder
+    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/application.properties
+  fi
+done
+```
+
+This script copies a JAR-file and a .properties file to the correct folder.
+Both files are Deployment Artifacts and their names and files names are passed to the scripts in the environment variable `DAs`.
+The content of `DAs` has the following format: `<DA 1 name>,<DA 1 file name>;<DA 2 name>,<DA 2 file name>;...`
+
+
 ## Example of a PythonScriptArtifact
 So far we have implemented all methods as bash scripts. But Python scripts are supported as well.
 The following example script installs `Deployment Artifacts` and requirements of the `Node Type` QHAna-PluginRunner version latest-w2.
@@ -475,78 +556,6 @@ The function `install_deployment_artifacts` calculates the paths to the `Deploym
 checks the type, and calls the correct install functions.
 `install_plugin_runner` unpacks the passed `Deployment Artifact` and installs required Python packages, `install_plugin` unpacks the passed `Deployment Artifact` into the plugins folder.
 In the end, `post_install` executes commands to configure the application and install more dependencies.
-
-
-## Deployment Artifacts
-
-`Deployment Artifacts` implement the business logic of an application, e.g., the JAR-file for a Tomcat web server.
-If you want to create a `Node Type` that has, e.g., a JAR-file as a `Deployment Artifact`, you need to create an interface with an implementation artifact that can execute this file.
-An environment variable called `DAs` is passed to `operations` and contains a list of all `Deployment Artifacts` of this `Node Type` and `Node Template`.
-
-**Example with a JAR-file as deployment artifact**
-- create a `Node Type`
-- create an `Interface` with a `start operation` for this `Node Type`
-- create a `Node Type Implementation` for this `Node Type`
-- add a `Deployment Artifact` to the `Node Type Implementation`
-![deployment artifact](./images/new_node_type/deployment%20artifacts/jar_artifact.png)
-- upload the `JAR-file` to the `Deployment Artifact`
-- add a `ScriptArtifact` as `Implementation Artifact` for the `start operation` to the `Node Type Implementation`
-![implementation artifact](./images/new_node_type/deployment%20artifacts/start_artifact.png)
-- upload a `script` to the `ScriptArtifact` that executes the `JAR-file`
-
-Example script to execute a `JAR-file`:
-```bash
-#!/bin/bash
-
-echo "Starting QHana-Backend"
-
-cd qhana_backend
-java -jar qhana_backend.jar
-echo "Done"
-
-sleep 5
-```
-
-**Example script that installs Deployment Artifacts**
-```bash
-#!/bin/bash
-
-# $DAs contains a semicolon separated list of the Deployment Artifacts
-IFS=';' read -ra NAMES <<< "$DAs";
-# NAMES is now an array where every element is a string that corresponds to a Deployment Artifact
-
-for i in "${NAMES[@]}"; do
-  echo "KeyValue-Pair: "
-  echo $i
-
-  # splits the string at the colon
-  IFS=',' read -ra entry <<< "$i";
-    echo "Key: "
-    echo ${entry[0]}  # first value contains the name of the Deployment Artifact
-    echo "Value: "
-    echo ${entry[1]}  # second value contains the file name of the Deployment Artifact
-
-  # find the executable jar file
-  if [[ "${entry[1]}" == *.jar ]];
-  then
-    # copy the executable to /var/www/
-    sudo mkdir -p /var/www/java/${AppName}
-    # $CSAR contains the path to the unzipped CSAR folder
-    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/${AppName}.jar
-  # find the application.properties file
-  elif [[ "${entry[1]}" == *.properties ]];
-  then
-    # copy the config file also to /var/www/
-    sudo mkdir -p /var/www/java/${AppName}
-    # $CSAR contains the path to the unzipped CSAR folder
-    sudo cp $CSAR${entry[1]} /var/www/java/${AppName}/application.properties
-  fi
-done
-```
-
-This script copies a JAR-file and a .properties file to the correct folder.
-Both files are Deployment Artifacts and their names and files names are passed to the scripts in the environment variable `DAs`.
-The content of `DAs` has the following format: `<DA 1 name>,<DA 1 file name>;<DA 2 name>,<DA 2 file name>;...`
 
 ## Tips and tricks
 
