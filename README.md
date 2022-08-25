@@ -2,6 +2,10 @@
 
 > TOSCA definitions related to quantum computing applications prepared for being consumed by a TOSCA-compliant engine, such as the [OpenTOSCA Container](http://opentosca.github.io/container).
 
+## OpenTOSCA tutorials
+
+You can find tutorials on how to use OpenTOSCA [here](https://github.com/OpenTOSCA/opentosca-docker/tree/main/docs).
+
 ## Usage
 
 This repository uses [git lfs](https://git-lfs.github.com/) as it contains large binary files which are not checked in to the git tree.
