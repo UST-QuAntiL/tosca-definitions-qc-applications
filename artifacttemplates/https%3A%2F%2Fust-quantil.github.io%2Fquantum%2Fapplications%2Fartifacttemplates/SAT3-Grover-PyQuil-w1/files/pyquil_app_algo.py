@@ -7,14 +7,14 @@ from ast import literal_eval
 
 
 ######### Function signature & filename must not be changed #########
-def run_algo(quantum_instance, args):
+def run_algo(quantum_device, args):
+    print("--- Start run_algo ---")
     clauses = literal_eval(args["clauses"])
-    print("find SAT solution for following clauses: %s" % clauses)
-
+    print("Try to find SAT solution for following clauses: %s" % clauses)
     n = len(clauses[0])
     oracle_circuit = oracle(clauses)
     grover_circuit = grover(n, oracle_circuit)
-    counts = run(grover_circuit, quantum_instance)
+    counts = run(grover_circuit, quantum_device)
     print("Execution results (counts): %s" % counts)
     max_found = max(counts.items(), key=operator.itemgetter(1))[0]
     print("Found solution: %s. Should be one of [000, 101, 110]" % max_found)
@@ -23,18 +23,9 @@ def run_algo(quantum_instance, args):
 
 
 # Each quantum implementation must use this snippet to run the circuit.
-#
-def run(circ, quantum_instance):
-    print('execute circuit on %s' % quantum_instance)
-    try:
-        qc = get_qc('10q-qvm')
-    except Exception as e:
-        print("Could not get_qc. Probably QVM is not running.")
-        return {'ERROR': 1}
-
-
-    print(qc)
-    result = qc.run(circ.wrap_in_numshots_loop(100))
+def run(circ, quantum_device, shots=100):
+    print('execute circuit on %s' % quantum_device)
+    result = quantum_device.run(circ.wrap_in_numshots_loop(shots))
     measures = result.readout_data['ro']
     counts = {}
     for measurement in measures:
@@ -90,7 +81,6 @@ def oracle(array: List[List[int]]):
             if clause[i] == 1:
                 circ.inst(X(i))
 
-
     check = []
     for i in range(len(array)):
         circ.inst(X(ancilla_index + i))
@@ -110,7 +100,6 @@ def grover(n: int, oracle_circ: Program):
     # initialization
     for i in range(n):
         circ.inst(H(i))
-
 
     iterations = math.floor(math.sqrt(n))
     print("Apply grover iteration %s times" % iterations)
@@ -134,16 +123,17 @@ def grover(n: int, oracle_circ: Program):
             circ.inst(X(i))
             circ.inst(H(i))
 
-
     for i in range(n):
         # reverse bit order
-        circ.inst(MEASURE(i, ro[n - 1 - i]))
+        circ.inst(MEASURE(i, [n - 1 - i]))
 
     return circ
 
 
 if __name__ == "__main__":
-    run_algo(
-        '10q-qvm',
-        {'clauses': '[[-1, -1, -1], [1, -1, 1], [1, 1, -1], [1, -1, -1], [-1, 1, 1]]'}
-    )
+    qc = get_qc('10q-qvm')
+    args = {
+        'clauses': '[[-1, -1, -1], [1, -1, 1], [1, 1, -1], [1, -1, -1], [-1, 1, 1]]',
+        'shots': '100'
+    }
+    run_algo(qc, args)
