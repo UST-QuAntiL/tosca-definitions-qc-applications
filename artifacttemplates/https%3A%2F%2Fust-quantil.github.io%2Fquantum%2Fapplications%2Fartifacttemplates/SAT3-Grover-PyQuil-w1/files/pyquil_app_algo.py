@@ -125,8 +125,7 @@ def grover(n: int, oracle_circ: Program):
 
     for i in range(n):
         # reverse bit order
-        circ.inst(MEASURE(i, [n - 1 - i]))
-
+        circ.inst(MEASURE(i, ro[n - 1 - i]))
     return circ
 
 
