@@ -1,3 +1,6 @@
+print("first line of pyquil_app_adapter.py")
+
+
 from pyquil import Program, get_qc
 from pyquil.gates import CCNOT, CZ, X, H, MEASURE
 import math
