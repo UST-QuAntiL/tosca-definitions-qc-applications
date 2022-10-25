@@ -1,24 +1,6 @@
-# TOSCA Definitions QC-Applications Repository [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# PluginRunner Plugins DA [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
-> TOSCA definitions related to quantum computing applications prepared for being consumed by a TOSCA-compliant engine, such as the [OpenTOSCA Container](http://opentosca.github.io/container).
-
-## OpenTOSCA tutorials
-
-You can find tutorials on how to use OpenTOSCA [here](https://github.com/OpenTOSCA/opentosca-docker/tree/main/docs).
-
-## Usage
-
-This repository uses [git lfs](https://git-lfs.github.com/) as it contains large binary files which are not checked in to the git tree.
-Therefore, make sure that
-  1. you have an active git lfs installation on your machine,
-  2. run `git lfs install` directly after cloning the repository inside the cloned folder, and
-  3. run `git lfs pull` to download the binary files.
-
-⚠️ If the lfs-files are not downloaded, the repository, and thus the modeled applications, cannot run! 
-Thus, ensure you run `git lfs pull`.
-
-💡 To install git lfs globally, run `git lfs install --system`. 
-This makes git lfs automatically available for all repositories and you do not have to run git lfs pull yourself.
+> This Artifact Template contains plugins for the PluginRunner.
 
 ## Haftungsausschluss
 

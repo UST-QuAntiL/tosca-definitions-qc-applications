@@ -3,26 +3,27 @@
 cd qhana_backend
 
 cat << EOF >> Config.toml
-[qhana.qhana_backend.database]
 
 
 # Either "sqlite" or "mariadb"
-dbType = "mariadb"
+qhana.qhana_backend.database.dbType = "mariadb"
 
 
 # File Path to the sqlite db
-dbPath = "qhana-backend.db"
+qhana.qhana_backend.database.dbPath = "qhana-backend.db"
 
 
 # Hostname + port for mariadb db
-dbHost = "${TARGET_ContainerIP}:${TARGET_DBMSPort}"
+qhana.qhana_backend.database.dbHost = "${TARGET_ContainerIP}:${TARGET_DBMSPort}"
 # DB name for mariadb db
-dbName = "$TARGET_DBName"
+qhana.qhana_backend.database.dbName = "$TARGET_DBName"
 # DB user for mariadb db
-dbUser = "$TARGET_DBUser"
+qhana.qhana_backend.database.dbUser = "$TARGET_DBUser"
 # DB password for mariadb db
-dbPassword = "$TARGET_DBPassword"
+qhana.qhana_backend.database.dbPassword = "$TARGET_DBPassword"
 EOF
+
+kill $(pgrep -f 'java')
 
 nohup java -jar qhana_backend.jar &
 
