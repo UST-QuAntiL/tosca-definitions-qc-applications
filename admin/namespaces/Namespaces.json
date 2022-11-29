@@ -5,28 +5,13 @@
     "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
-    "secureCollection" : false
-  },
-  "http://www.opentosca.org/winery/extensions/tosca/2013/02/12" : {
-    "namespace" : "http://www.opentosca.org/winery/extensions/tosca/2013/02/12",
-    "prefix" : "winery",
-    "readableName" : "TOSCA extension by Eclipse Winery",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
+    "repositoryId" : "workspace",
     "secureCollection" : false
   },
   "http://www.example.org" : {
     "namespace" : "http://www.example.org",
     "prefix" : "ex",
     "readableName" : "Namespace for creating examples",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
-    "secureCollection" : false
-  },
-  "https://ust-quantil.github.io/quantum/applications" : {
-    "namespace" : "https://ust-quantil.github.io/quantum/applications",
-    "prefix" : "quantumApplications",
-    "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
     "secureCollection" : false
@@ -39,12 +24,13 @@
     "patternCollection" : false,
     "secureCollection" : false
   },
-  "http://www.example.org/tosca/servicetemplates" : {
-    "namespace" : "http://www.example.org/tosca/servicetemplates",
-    "prefix" : "steIgeneral",
+  "https://ust-quantil.github.io/quantum/applications" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/applications",
+    "prefix" : "quantumApplications",
     "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
+    "repositoryId" : "workspace",
     "secureCollection" : false
   },
   "https://ust-quantil.github.io/quantum/applications/artifacttemplates" : {
@@ -53,14 +39,7 @@
     "readableName" : "Deployment Artifacts for QC Apps",
     "generatedNamespace" : false,
     "patternCollection" : false,
-    "secureCollection" : false
-  },
-  "http://www.w3.org/XML/1998/namespace" : {
-    "namespace" : "http://www.w3.org/XML/1998/namespace",
-    "prefix" : "xmlns",
-    "readableName" : "W3C XML namespace",
-    "generatedNamespace" : false,
-    "patternCollection" : false,
+    "repositoryId" : "workspace",
     "secureCollection" : false
   },
   "http://www.w3.org/2001/XMLSchema" : {
@@ -71,12 +50,55 @@
     "patternCollection" : false,
     "secureCollection" : false
   },
+  "http://www.opentosca.org/winery/extensions/tosca/2013/02/12" : {
+    "namespace" : "http://www.opentosca.org/winery/extensions/tosca/2013/02/12",
+    "prefix" : "winery",
+    "readableName" : "TOSCA extension by Eclipse Winery",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "http://www.example.org/tosca/servicetemplates" : {
+    "namespace" : "http://www.example.org/tosca/servicetemplates",
+    "prefix" : "steIgeneral",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "repositoryId" : "workspace",
+    "secureCollection" : false
+  },
+  "http://www.w3.org/XML/1998/namespace" : {
+    "namespace" : "http://www.w3.org/XML/1998/namespace",
+    "prefix" : "xmlns",
+    "readableName" : "W3C XML namespace",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/patterns/patternrefinementmodels" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/patterns/patternrefinementmodels",
+    "prefix" : "patternrefinementmodels",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : false,
+    "secureCollection" : false
+  },
+  "https://ust-quantil.github.io/quantum/patterns" : {
+    "namespace" : "https://ust-quantil.github.io/quantum/patterns",
+    "prefix" : "patterns",
+    "readableName" : "",
+    "generatedNamespace" : false,
+    "patternCollection" : true,
+    "repositoryId" : "workspace",
+    "secureCollection" : false
+  },
   "https://ust-quantil.github.io/quantum/applications/nodetypes" : {
     "namespace" : "https://ust-quantil.github.io/quantum/applications/nodetypes",
     "prefix" : "quantumApplicationNodeTypes",
     "readableName" : "",
     "generatedNamespace" : false,
     "patternCollection" : false,
+    "repositoryId" : "workspace",
     "secureCollection" : false
   },
   "http://docs.oasis-open.org/tosca/ns/simple/yaml/1.3" : {
@@ -93,6 +115,7 @@
     "readableName" : "Quantum Applications",
     "generatedNamespace" : false,
     "patternCollection" : false,
+    "repositoryId" : "workspace",
     "secureCollection" : false
   }
 }
