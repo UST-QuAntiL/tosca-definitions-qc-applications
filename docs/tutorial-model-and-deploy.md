@@ -259,6 +259,7 @@ For this purpose, the interface name must have the following pattern:
 Moreover, it is possible to specify the type of the opposite node in the connection,  i.e., the node on which the operation is not performed. To this end, the interface name must be extended as follows:
 `http://opentosca.org/interfaces/connections/[source|target]/{type_id_without_version}`
 The version number is omitted, and only the id of the given type gets checked.
+For example, a `ConnectTo` operation of the Shor-UI with interface name `http://opentosca.org/interfaces/connections/source/Qiskit-App` gets only executed for relationship templates that have the Shor-UI as the source node, and the Qiskit-App as the target node.
 
 It is recommended to use the `ConnectTo` operation in the most restricted way possible, as this prevents errors when a node has multiple `ConnectTo` operations with the same properties.
 
