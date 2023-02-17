@@ -248,19 +248,19 @@ To verify that your deployment was actually successful open <http://localhost:99
 ### Tutorials for relations (available soon)
 
 #### connectTo interface
-By means of the interface name of a connectTo operation, it can be specified more precisely when it is to be executed.
+By means of the interface name of a `ConnectTo` operation, it can be specified more precisely when it is to be executed.
 The default interface name is  http://opentosca.org/interfaces/connections.
-ConnectTo operations with this interface name get executed when there is a valid property mapping, regardless of whether they are in the role of the source or target node of a connection.
+`ConnectTo` operations with this interface name get executed when there is a valid property mapping, regardless of whether they are in the role of the source or target node of a connection.
 
 This behavior can be restricted such that an operation is only called when it gets executed on the specified node of the connection, i.e., the source or target node. 
 For this purpose, the interface name must have the following pattern:
-http://opentosca.org/interfaces/connections/[source%7Ctarget]
+`http://opentosca.org/interfaces/connections/[source|target]`
 
 Moreover, it is possible to specify the type of the opposite node in the connection,  i.e., the node on which the operation is not performed. To this end, the interface name must be extended as follows:
-http://opentosca.org/interfaces/connections/[source%7Ctarget]/{type_without_version}
+`http://opentosca.org/interfaces/connections/[source|target]/{type_without_version}`
 The version number is omitted, and only the name of the given type gets checked.
 
-It is recommended to use the connectsTo operation in the most restricted way possible, as this prevents errors when a node has multiple connectsTo operations with the same properties.
+It is recommended to use the `ConnectTo` operation in the most restricted way possible, as this prevents errors when a node has multiple `ConnectTo` operations with the same properties.
 
 #### Tips for connectTo
 
