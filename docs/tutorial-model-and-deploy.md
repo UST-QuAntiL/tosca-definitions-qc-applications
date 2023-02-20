@@ -247,6 +247,22 @@ To verify that your deployment was actually successful open <http://localhost:99
 
 ### Tutorials for relations (available soon)
 
+#### connectTo interface
+By means of the interface name of a `ConnectTo` operation, it can be specified more precisely when it is to be executed.
+The default interface name is  `http://opentosca.org/interfaces/connections`.
+`ConnectTo` operations with this interface name get executed when there is a valid property mapping, regardless of whether they are in the role of the source or target node of a connection.
+
+This behavior can be restricted such that an operation is only called when it gets executed on the specified node of the connection, i.e., the source or target node. 
+For this purpose, the interface name must have the following pattern:
+`http://opentosca.org/interfaces/connections/[source|target]`
+
+Moreover, it is possible to specify the type of the opposite node in the connection,  i.e., the node on which the operation is not performed. To this end, the interface name must be extended as follows:
+`http://opentosca.org/interfaces/connections/[source|target]/{type_id_without_version}`
+The version number is omitted, and only the id of the given type gets checked.
+For example, a `ConnectTo` operation defined at the Shor-UI `NodeType` with interface name `http://opentosca.org/interfaces/connections/source/Qiskit-App` gets only executed for relationship templates that have the Shor-UI as the source node, and the Qiskit-App as the target node.
+
+It is recommended to use the `ConnectTo` operation in the most restricted way possible, as this prevents errors when a node has multiple `ConnectTo` operations with the same properties.
+
 #### Tips for connectTo
 
 + If a component is already running, restart component during the connectTo execution.
