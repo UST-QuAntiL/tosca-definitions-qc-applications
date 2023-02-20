@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Definitions xmlns="http://docs.oasis-open.org/tosca/ns/2011/12" xmlns:winery="http://www.opentosca.org/winery/extensions/tosca/2013/02/12" xmlns:selfservice="http://www.eclipse.org/winery/model/selfservice" xmlns:testwineryopentoscaorg="http://test.winery.opentosca.org" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="quantumApplicationsServiceTemplates-Braket-RNG-Demo_w1">
+    <ServiceTemplate name="Braket-RNG-Demo_w1" targetNamespace="https://ust-quantil.github.io/quantum/applications/servicetemplates" id="Braket-RNG-Demo_w1">
+        <TopologyTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="AWS_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:AWS_w1" id="AWS_w1_0" winery:x="1472" winery:y="685">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <AWS_ACCESS_KEY_ID>get_input: AWS_ACCESS_KEY_ID</AWS_ACCESS_KEY_ID>
+                        <AWS_SECRET_ACCESS_KEY>get_input: AWS_SECRET_ACCESS_KEY</AWS_SECRET_ACCESS_KEY>
+                        <AWS_REGION>get_input: AWS_REGION</AWS_REGION>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Boto3" minInstances="1" maxInstances="1" type="otntyIgeneral:Boto3_latest-w1" id="Boto3_latest-w1_0" winery:x="1471" winery:y="442"/>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="Python" minInstances="1" maxInstances="1" type="otntyIgeneral:Python_3-w1" id="Python_3-w1_0" winery:x="1126" winery:y="443"/>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_0" winery:x="1130" winery:y="684">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <Port>get_input: BackendPort</Port>
+                        <ContainerPort>get_input: BackendPort</ContainerPort>
+                        <ContainerID/>
+                        <ContainerIP/>
+                        <ImageID>ubuntu:20.04</ImageID>
+                        <ContainerMountPath/>
+                        <HostMountFiles/>
+                        <PrivilegedMode/>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerEngine_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerEngine_w1" id="DockerEngine_w1_0" winery:x="724" winery:y="840">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <DockerEngineURL>get_input: DockerEngineURL</DockerEngineURL>
+                        <DockerEngineCertificate/>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="DockerContainer_w1" minInstances="1" maxInstances="1" type="otntyIgeneral:DockerContainer_w1" id="DockerContainer_w1_1" winery:x="400" winery:y="689">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <Port>get_input: FrontendPort</Port>
+                        <ContainerPort>80</ContainerPort>
+                        <ContainerID/>
+                        <ContainerIP/>
+                        <ImageID>ubuntu:20.04</ImageID>
+                        <ContainerMountPath/>
+                        <HostMountFiles/>
+                        <PrivilegedMode/>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:otntyIgeneral="http://opentosca.org/nodetypes" name="NGINX" minInstances="1" maxInstances="1" type="otntyIgeneral:NGINX_latest-w1" id="NGINX_latest-w1_0" winery:x="400" winery:y="454">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <component_version/>
+                        <admin_credential/>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:quantumApplicationNodeTypes="https://ust-quantil.github.io/quantum/applications/nodetypes" name="RNG-UI_w1" minInstances="1" maxInstances="1" type="quantumApplicationNodeTypes:RNG-UI_w1" id="RNG-UI_w1_0" winery:x="406" winery:y="215">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <AppName>RNGUI</AppName>
+                        <context_root/>
+                    </ex:Properties>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="Braket-SDK" minInstances="1" maxInstances="1" type="ntyIgeneral:Braket-SDK_latest-w1" id="Braket-SDK_latest-w1_0" winery:x="745" winery:y="447">
+                <Properties>
+                    <ntyIgeneral:Braket-SDK_latest-w1 xmlns="https://ust-quantil.github.io/nodetypes">
+                        <Version/>
+                    </ntyIgeneral:Braket-SDK_latest-w1>
+                </Properties>
+            </NodeTemplate>
+            <NodeTemplate xmlns:ntyIgeneral="https://ust-quantil.github.io/nodetypes" name="Braket-App_w1" minInstances="1" maxInstances="1" type="ntyIgeneral:Braket-App_w1" id="Braket-App_w1_1" winery:x="1126" winery:y="209">
+                <Properties>
+                    <ex:Properties xmlns:ex="http://www.example.org" xmlns="http://www.example.org">
+                        <Port>get_input: BackendPort</Port>
+                    </ex:Properties>
+                </Properties>
+                <DeploymentArtifacts>
+                    <DeploymentArtifact xmlns:atyIgeneral="https://ust-quantil.github.io/artifacttypes" xmlns:quantumApplicationsArtifactTemplates="https://ust-quantil.github.io/quantum/applications/artifacttemplates" name="BraketRNG_DA" artifactType="atyIgeneral:BraketApp" artifactRef="quantumApplicationsArtifactTemplates:BraketRNG_DA"/>
+                </DeploymentArtifacts>
+            </NodeTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_3">
+                <SourceElement ref="Boto3_latest-w1_0"/>
+                <TargetElement ref="DockerContainer_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_4">
+                <SourceElement ref="Python_3-w1_0"/>
+                <TargetElement ref="DockerContainer_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_1">
+                <SourceElement ref="Boto3_latest-w1_0"/>
+                <TargetElement ref="Python_3-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_6">
+                <SourceElement ref="DockerContainer_w1_0"/>
+                <TargetElement ref="DockerEngine_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_0">
+                <SourceElement ref="DockerContainer_w1_1"/>
+                <TargetElement ref="DockerEngine_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_1">
+                <SourceElement ref="NGINX_latest-w1_0"/>
+                <TargetElement ref="DockerContainer_w1_1"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_7">
+                <SourceElement ref="RNG-UI_w1_0"/>
+                <TargetElement ref="NGINX_latest-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_0">
+                <SourceElement ref="Braket-SDK_latest-w1_0"/>
+                <TargetElement ref="Python_3-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_2">
+                <SourceElement ref="Braket-SDK_latest-w1_0"/>
+                <TargetElement ref="DockerContainer_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_8">
+                <SourceElement ref="Boto3_latest-w1_0"/>
+                <TargetElement ref="AWS_w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="ConnectsTo" type="ToscaBaseTypes:ConnectsTo" id="con_ConnectsTo_0">
+                <Properties>
+                    <pdIToscaBaseTypes:properties xmlns:pdIToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery" xmlns="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes/propertiesdefinition/winery">
+                        <ChannelType/>
+                    </pdIToscaBaseTypes:properties>
+                </Properties>
+                <SourceElement ref="RNG-UI_w1_0"/>
+                <TargetElement ref="Braket-App_w1_1"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="HostedOn" type="ToscaBaseTypes:HostedOn" id="con_HostedOn_9">
+                <SourceElement ref="Braket-App_w1_1"/>
+                <TargetElement ref="Python_3-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_2">
+                <SourceElement ref="Braket-App_w1_1"/>
+                <TargetElement ref="Boto3_latest-w1_0"/>
+            </RelationshipTemplate>
+            <RelationshipTemplate xmlns:ToscaBaseTypes="http://docs.oasis-open.org/tosca/ns/2011/12/ToscaBaseTypes" name="DependsOn" type="ToscaBaseTypes:DependsOn" id="con_DependsOn_3">
+                <SourceElement ref="Braket-App_w1_1"/>
+                <TargetElement ref="Braket-SDK_latest-w1_0"/>
+            </RelationshipTemplate>
+        </TopologyTemplate>
+    </ServiceTemplate>
+</Definitions>
